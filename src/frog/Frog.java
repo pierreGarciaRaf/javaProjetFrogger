@@ -8,19 +8,17 @@ import gameCommons.IFrog;
 public class Frog implements IFrog {
 
 	private Game m_game;
-	private int m_x;
-	private int m_y;
+	private Case m_position;
 	private Direction m_direction;
 
-	public Frog(Game game, int x, int y, Direction direction) {
+	public Frog(Game game, Case position, Direction direction) {
 		m_game = game;
-		m_x = x;
-		m_y = y;
+		m_position = position;
 		m_direction = direction;
 	}
 
 	public Frog(Game game) {
-		this(game, 0, 0, Direction.up);
+		this(game, new Case(0, 0), Direction.up);
 	}
 
 	/**
@@ -29,7 +27,7 @@ public class Frog implements IFrog {
 	 * @return
 	 */
 	public Case getPosition() {
-
+		return m_position;
 	}
 
 	/**
@@ -38,7 +36,7 @@ public class Frog implements IFrog {
 	 * @return
 	 */
 	public Direction getDirection() {
-
+		return m_direction;
 	}
 
 	/**
