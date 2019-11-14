@@ -45,7 +45,20 @@ public class Frog implements IFrog {
 	 * @param key
 	 */
 	public void move(Direction key) {
-
+		switch (key) {
+		case up:
+			m_position = new Case(m_position.absc, m_position.ord + 1);
+			break;
+		case down:
+			m_position = new Case(m_position.absc, m_position.ord - 1);
+			break;
+		case left:
+			m_position = new Case(m_position.absc - 1, m_position.ord);
+			break;
+		case right:
+			m_position = new Case(m_position.absc + 1, m_position.ord);
+			break;
+		}
 	}
 
 }
