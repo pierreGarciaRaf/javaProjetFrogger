@@ -66,7 +66,6 @@ public class Game {
 	 * @return l'interface graphique
 	 */
 	public IFroggerGraphics getGraphic() {
-		System.out.println("GAME!");
 		return graphic;
 	}
 
@@ -79,6 +78,7 @@ public class Game {
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
+			graphic.endGameScreen("YOU LOSE!");
 			return true;
 		}
 		return false;
@@ -93,6 +93,7 @@ public class Game {
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
 			System.out.println("GAME!");
+			graphic.endGameScreen("GAME!");
 			return true;
 		}
 		return false;

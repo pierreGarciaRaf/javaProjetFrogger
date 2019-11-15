@@ -87,4 +87,7 @@ public class Frog implements IFrog {
 		}
 	}
 
+	public static void main(String[] args) {
+	}
+
 }
