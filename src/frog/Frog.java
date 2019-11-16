@@ -38,28 +38,32 @@ public class Frog implements IFrog {
 	public Direction getDirection() {
 		return m_direction;
 	}
+
 	/**
 	 * Returns a case that is within game bounds.
+	 * 
 	 * @param abs to limit with width
 	 * @param ord to limit with height
 	 * 
-	 * @return Case gives a case that is the closest to given coords, while being in bounds.
+	 * @return Case gives a case that is the closest to given coords, while being in
+	 *         bounds.
 	 */
 	private static Case limitedCase(int abs, int ord) {
-		while (abs > m_game.width-1) {
+		while (abs > m_game.width - 1) {
 			abs -= 1;
 		}
 		while (abs < 0) {
 			abs += 1;
 		}
-		while (ord > m_game.height-1) {
+		while (ord > m_game.height - 1) {
 			ord -= 1;
 		}
 		while (ord < 0) {
 			ord += 1;
 		}
-		return new Case(abs,ord);
+		return new Case(abs, ord);
 	}
+
 	/**
 	 * D�place la grenouille dans la direction donn�e et teste la fin de partie
 	 * 

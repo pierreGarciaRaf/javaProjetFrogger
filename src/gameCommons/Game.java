@@ -23,16 +23,13 @@ public class Game {
 
 	/**
 	 * 
-	 * @param graphic
-	 *            l'interface graphique
-	 * @param width
-	 *            largeur en cases
-	 * @param height
-	 *            hauteur en cases
-	 * @param minSpeedInTimerLoop
-	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
-	 * @param defaultDensity
-	 *            densite de voiture utilisee par defaut pour les routes
+	 * @param graphic             l'interface graphique
+	 * @param width               largeur en cases
+	 * @param height              hauteur en cases
+	 * @param minSpeedInTimerLoop Vitesse minimale, en nombre de tour de timer avant
+	 *                            d�placement
+	 * @param defaultDensity      densite de voiture utilisee par defaut pour les
+	 *                            routes
 	 */
 	public Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
 		super();
@@ -100,8 +97,7 @@ public class Game {
 	}
 
 	/**
-	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
-	 * partie.
+	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */
 	public void update() {
 		graphic.clear();

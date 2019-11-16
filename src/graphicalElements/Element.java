@@ -4,18 +4,17 @@ import java.awt.*;
 
 import gameCommons.Case;
 
-
 public class Element extends Case {
-    public final Color color;
+	public final Color color;
 
-    public Element(int absc, int ord, Color color) {
-        super(absc, ord);
-        this.color = color;
-    }
-    
-    public Element(Case c, Color color) {
-        super(c.absc, c.ord);
-        this.color = color;
-    }
-    
+	public Element(int absc, int ord, Color color) {
+		super(absc, ord);
+		this.color = color;
+	}
+
+	public Element(Case c, Color color) {
+		super(c.absc, c.ord);
+		this.color = color;
+	}
+
 }
