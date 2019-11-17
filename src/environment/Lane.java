@@ -12,40 +12,55 @@ public class Lane {
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
 	private double density;
-
 	// TODO : Constructeur(s)
-
+	public Lane(Game game, int ord, int speed, boolean leftToRight, double density) {
+		this.game = game;
+		this.ord = ord;
+		this.speed = speed;
+		this.leftToRight = leftToRight;
+		this.density = density;
+	}
 	public void update() {
-
+		System.out.println("lane Update at "+this);
+		this.mayAddCar();
 		// TODO
 
-		// Toutes les voitures se déplacent d'une case au bout d'un nombre "tic
-		// d'horloge" égal à leur vitesse
-		// Notez que cette méthode est appelée à chaque tic d'horloge
+		// Toutes les voitures se dï¿½placent d'une case au bout d'un nombre "tic
+		// d'horloge" ï¿½gal ï¿½ leur vitesse
+		// Notez que cette mï¿½thode est appelï¿½e ï¿½ chaque tic d'horloge
 
 		// Les voitures doivent etre ajoutes a l interface graphique meme quand
 		// elle ne bougent pas
 
-		// A chaque tic d'horloge, une voiture peut être ajoutée
+		// A chaque tic d'horloge, une voiture peut ï¿½tre ajoutï¿½e
 
 	}
 
 	// TODO : ajout de methodes
 	
-	private boolean isSafe(Case c) {
-		
-		return false;
+	public boolean isSafe(Case c) {
+		if (c.ord !=ord) {
+			return true;
+		}
+		for (Car car: cars) {
+			if (car.getCase().absc >= c.absc && car.getCase().absc + car.getLength() <= c.absc){
+				return false;
+			}
+		}
+		return true;
 	}
 	/*
 	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
 	 */
 
 	/**
-	 * Ajoute une voiture au début de la voie avec probabilité égale à la
-	 * densité, si la première case de la voie est vide
+	 * Ajoute une voiture au dï¿½but de la voie avec probabilitï¿½ ï¿½gale ï¿½ la
+	 * densitï¿½, si la premiï¿½re case de la voie est vide
 	 */
 	private void mayAddCar() {
+		System.out.println("guess to add car");
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+			System.out.println("try to add car");
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}

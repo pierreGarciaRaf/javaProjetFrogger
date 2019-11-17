@@ -15,10 +15,24 @@ public class Car {
 	private final Color colorRtL = Color.BLUE;
 
 	// TODO Constructeur(s)
-	public Car(Game game, Case position, boolean leftToRight) {
+	public Car(Game game, Case leftPosition, boolean leftToRight) {
+		System.out.println("carCreated");
+		this.game = game;
+		this.leftPosition = leftPosition;
+		this.leftToRight = leftToRight;
+		this.length = 5;
+		this.addToGraphics();
+	}
+	
+	public Case getCase() {
+		return new Case(leftPosition.absc,leftPosition.ord);
 		
 	}
-
+	
+	public int getLength() {
+		return length;
+	}
+	
 	// TODO : ajout de methodes
 
 	/*
