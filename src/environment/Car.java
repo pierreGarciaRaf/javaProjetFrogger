@@ -16,7 +16,6 @@ public class Car {
 
 	// TODO Constructeur(s)
 	public Car(Game game, Case leftPosition, boolean leftToRight) {
-		System.out.println("carCreated");
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
@@ -26,7 +25,6 @@ public class Car {
 	
 	public Case getCase() {
 		return new Case(leftPosition.absc,leftPosition.ord);
-		
 	}
 	
 	public int getLength() {
@@ -34,7 +32,16 @@ public class Car {
 	}
 	
 	// TODO : ajout de methodes
-
+	
+	public void updateAndMoveTo(Case caseToGo){
+		leftPosition = caseToGo;
+		addToGraphics();
+		
+	}
+	
+	public void update() {
+		updateAndMoveTo(this.leftPosition);
+	}
 	/*
 	 * Fourni : addToGraphics() permettant d'ajouter un element graphique
 	 * correspondant a la voiture

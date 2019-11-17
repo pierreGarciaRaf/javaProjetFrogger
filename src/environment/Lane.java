@@ -21,8 +21,10 @@ public class Lane {
 		this.density = density;
 	}
 	public void update() {
-		System.out.println("lane Update at "+this);
 		this.mayAddCar();
+		for (Car car : cars) {
+			car.update();
+		}
 		// TODO
 
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
@@ -43,8 +45,12 @@ public class Lane {
 			return true;
 		}
 		for (Car car: cars) {
-			if (car.getCase().absc >= c.absc && car.getCase().absc + car.getLength() <= c.absc){
+			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() >= c.absc){
+				System.out.println("not safe");
 				return false;
+			}
+			else {
+				System.out.println("safe");
 			}
 		}
 		return true;
@@ -58,9 +64,7 @@ public class Lane {
 	 * densit�, si la premi�re case de la voie est vide
 	 */
 	private void mayAddCar() {
-		System.out.println("guess to add car");
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
-			System.out.println("try to add car");
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}
