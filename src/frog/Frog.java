@@ -18,7 +18,7 @@ public class Frog implements IFrog {
 	}
 
 	public Frog(Game game) {
-		this(game, new Case(0, 0), Direction.up);
+		this(game, new Case(game.width / 2, 0), Direction.up);
 	}
 
 	/**
@@ -90,8 +90,4 @@ public class Frog implements IFrog {
 			break;
 		}
 	}
-
-	public static void main(String[] args) {
-	}
-
 }

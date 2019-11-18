@@ -13,8 +13,8 @@ public class Car {
 	private boolean leftToRight;
 	private int length;
 	private int maxLength = 4;
-	private final Color colorLtR = Color.BLACK;
-	private final Color colorRtL = Color.BLUE;
+	private final Color colorLtR = Color.BLUE;
+	private final Color colorRtL = Color.BLACK;
 
 	// TODO Constructeur(s)
 	public Car(Game game, Case leftPosition, boolean leftToRight) {
@@ -54,9 +54,9 @@ public class Car {
 	private void addToGraphics() {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
-			if (this.leftToRight) {
-				color = colorLtR;
-			}
+			//if (this.leftToRight) {
+			//	color = colorLtR;
+			//}
 			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
 		}
 	}

@@ -37,14 +37,14 @@ public class Lane {
 		// elle ne bougent pas
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-		timer += 1;
-		if (timer == speed) {
-			timer = 0;
+		this.timer += 1;
+		if (this.timer == this.speed) {
+			this.timer = 0;
 			int increaser = -1;
-			if (leftToRight) {
+			if (this.leftToRight) {
 				increaser = 1;
 			}
-			for (Car car : cars) {
+			for (Car car : this.cars) {
 				car.updateAndMoveTo(new Case(car.getCase().absc + increaser, car.getCase().ord));
 			}
 		}
@@ -61,10 +61,10 @@ public class Lane {
 		}
 		for (Car car : cars) {
 			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc) {
-				System.out.println("not safe");
+				//System.out.println("not safe");
 				return false;
 			} else {
-				System.out.println("safe");
+				//System.out.println("safe");
 			}
 		}
 		return true;

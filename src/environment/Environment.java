@@ -1,7 +1,7 @@
 package environment;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Random;
 
 import gameCommons.Case;
 import gameCommons.Game;
@@ -9,15 +9,23 @@ import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
 
+	private final int MAXSPEED = 10;
+	
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
 
 	public Environment(Game game) {
 		this.game = game;
+
 		lanes.add(new Lane(game, 0, 1, true, 0));
-		for (int ord = 1; ord < game.height; ord += 1) {
-			lanes.add(new Lane(game, ord, 1, (ord % 4 > 2), game.defaultDensity));
+
+		Random rand = new Random();
+		
+		for (int ord = 1; ord < game.height - 1; ord++) {
+			lanes.add(new Lane(game, ord, rand.nextInt(MAXSPEED), rand.nextBoolean(), game.defaultDensity));
 		}
+
+		lanes.add(new Lane(game, game.height - 1, 1, true, 0));
 	}
 
 	// TODO
