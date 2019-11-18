@@ -22,7 +22,7 @@ public class Environment implements IEnvironment {
 		Random rand = new Random();
 		
 		for (int ord = 1; ord < game.height - 1; ord++) {
-			lanes.add(new Lane(game, ord, rand.nextInt(MAXSPEED), rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Lane(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 
 		lanes.add(new Lane(game, game.height - 1, 1, true, 0));
