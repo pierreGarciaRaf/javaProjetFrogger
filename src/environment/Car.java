@@ -1,6 +1,7 @@
 package environment;
 
 import java.awt.Color;
+import java.util.Random;
 
 import gameCommons.Case;
 import gameCommons.Game;
@@ -11,6 +12,7 @@ public class Car {
 	private Case leftPosition;
 	private boolean leftToRight;
 	private int length;
+	private int maxLength = 4;
 	private final Color colorLtR = Color.BLACK;
 	private final Color colorRtL = Color.BLUE;
 
@@ -19,7 +21,9 @@ public class Car {
 		this.game = game;
 		this.leftPosition = leftPosition;
 		this.leftToRight = leftToRight;
-		this.length = 5;
+		Random rn = new Random();
+
+		this.length = rn.nextInt()%(maxLength);
 		this.addToGraphics();
 	}
 	

@@ -1,11 +1,14 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import gameCommons.Case;
 import gameCommons.Game;
 
 public class Lane {
+	private int timer;
+	
 	private Game game;
 	private int ord;
 	private int speed;
@@ -19,12 +22,9 @@ public class Lane {
 		this.speed = speed;
 		this.leftToRight = leftToRight;
 		this.density = density;
+		
 	}
 	public void update() {
-		this.mayAddCar();
-		for (Car car : cars) {
-			car.update();
-		}
 		// TODO
 
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
@@ -35,6 +35,19 @@ public class Lane {
 		// elle ne bougent pas
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
+		timer+= 1;
+		if (timer == speed) {
+			timer = 0;
+			int increaser = -1;
+			if (leftToRight) {
+				increaser = 1;
+			}
+			for (Car car : cars) {
+				car.updateAndMoveTo(new Case(car.getCase().absc + increaser, car.getCase().ord));
+			}
+		}
+		
+		this.mayAddCar();
 
 	}
 
@@ -45,7 +58,7 @@ public class Lane {
 			return true;
 		}
 		for (Car car: cars) {
-			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() >= c.absc){
+			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc){
 				System.out.println("not safe");
 				return false;
 			}
