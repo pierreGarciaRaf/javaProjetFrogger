@@ -23,29 +23,30 @@ public class Car {
 		this.leftToRight = leftToRight;
 		Random rn = new Random();
 
-		this.length = rn.nextInt()%(maxLength);
+		this.length = rn.nextInt() % (maxLength);
 		this.addToGraphics();
 	}
-	
+
 	public Case getCase() {
-		return new Case(leftPosition.absc,leftPosition.ord);
+		return new Case(leftPosition.absc, leftPosition.ord);
 	}
-	
+
 	public int getLength() {
 		return length;
 	}
-	
+
 	// TODO : ajout de methodes
-	
-	public void updateAndMoveTo(Case caseToGo){
+
+	public void updateAndMoveTo(Case caseToGo) {
 		leftPosition = caseToGo;
 		addToGraphics();
-		
+
 	}
-	
+
 	public void update() {
 		updateAndMoveTo(this.leftPosition);
 	}
+
 	/*
 	 * Fourni : addToGraphics() permettant d'ajouter un element graphique
 	 * correspondant a la voiture

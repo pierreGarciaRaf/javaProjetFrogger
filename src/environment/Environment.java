@@ -8,19 +8,19 @@ import gameCommons.Game;
 import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
-	
+
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
-	
-	public Environment(Game game){
+
+	public Environment(Game game) {
 		this.game = game;
-		lanes.add(new Lane(game,0,1,true,0));
+		lanes.add(new Lane(game, 0, 1, true, 0));
 		for (int ord = 1; ord < game.height; ord += 1) {
-			lanes.add(new Lane(game,ord,1,(ord%4>2),game.defaultDensity));
+			lanes.add(new Lane(game, ord, 1, (ord % 4 > 2), game.defaultDensity));
 		}
 	}
-		
-	//TODO
+
+	// TODO
 	/**
 	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
 	 * sans mourir
@@ -30,7 +30,7 @@ public class Environment implements IEnvironment {
 	 */
 	public boolean isSafe(Case c) {
 		return lanes.get(c.ord).isSafe(c);
-		
+
 	}
 
 	/**
@@ -40,8 +40,8 @@ public class Environment implements IEnvironment {
 	 * @return vrai si la case est une case de victoire
 	 */
 	public boolean isWinningPosition(Case c) {
-		return c.ord == game.height-1;
-		
+		return c.ord == game.height - 1;
+
 	}
 
 	/**

@@ -8,13 +8,14 @@ import gameCommons.Game;
 
 public class Lane {
 	private int timer;
-	
+
 	private Game game;
 	private int ord;
 	private int speed;
 	private ArrayList<Car> cars = new ArrayList<>();
 	private boolean leftToRight;
 	private double density;
+
 	// TODO : Constructeur(s)
 	public Lane(Game game, int ord, int speed, boolean leftToRight, double density) {
 		this.game = game;
@@ -22,8 +23,9 @@ public class Lane {
 		this.speed = speed;
 		this.leftToRight = leftToRight;
 		this.density = density;
-		
+
 	}
+
 	public void update() {
 		// TODO
 
@@ -35,7 +37,7 @@ public class Lane {
 		// elle ne bougent pas
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-		timer+= 1;
+		timer += 1;
 		if (timer == speed) {
 			timer = 0;
 			int increaser = -1;
@@ -46,35 +48,34 @@ public class Lane {
 				car.updateAndMoveTo(new Case(car.getCase().absc + increaser, car.getCase().ord));
 			}
 		}
-		
+
 		this.mayAddCar();
 
 	}
 
 	// TODO : ajout de methodes
-	
+
 	public boolean isSafe(Case c) {
-		if (c.ord !=ord) {
+		if (c.ord != ord) {
 			return true;
 		}
-		for (Car car: cars) {
-			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc){
+		for (Car car : cars) {
+			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc) {
 				System.out.println("not safe");
 				return false;
-			}
-			else {
+			} else {
 				System.out.println("safe");
 			}
 		}
 		return true;
 	}
 	/*
-	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
+	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase()
 	 */
 
 	/**
-	 * Ajoute une voiture au d�but de la voie avec probabilit� �gale � la
-	 * densit�, si la premi�re case de la voie est vide
+	 * Ajoute une voiture au d�but de la voie avec probabilit� �gale � la densit�,
+	 * si la premi�re case de la voie est vide
 	 */
 	private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
