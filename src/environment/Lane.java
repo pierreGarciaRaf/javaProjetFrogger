@@ -50,6 +50,10 @@ public class Lane {
 		}
 
 		this.mayAddCar();
+		
+		for (Car car : this.cars) {
+			car.addToGraphics();
+		}
 
 	}
 

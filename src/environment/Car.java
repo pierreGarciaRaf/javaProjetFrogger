@@ -39,7 +39,7 @@ public class Car {
 
 	public void updateAndMoveTo(Case caseToGo) {
 		leftPosition = caseToGo;
-		addToGraphics();
+		//addToGraphics();
 
 	}
 
@@ -51,7 +51,7 @@ public class Car {
 	 * Fourni : addToGraphics() permettant d'ajouter un element graphique
 	 * correspondant a la voiture
 	 */
-	private void addToGraphics() {
+	public void addToGraphics() {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
 			//if (this.leftToRight) {

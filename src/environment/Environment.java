@@ -9,7 +9,7 @@ import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
 
-	private final int MAXSPEED = 10;
+	private final int MAXSPEED = 3;
 	
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
