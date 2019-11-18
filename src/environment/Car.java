@@ -10,17 +10,17 @@ import graphicalElements.Element;
 public class Car {
 	private Game game;
 	private Case leftPosition;
-	private boolean leftToRight;
+	//private boolean leftToRight;
 	private int length;
 	private int maxLength = 4;
-	private final Color colorLtR = Color.BLUE;
+	//private final Color colorLtR = Color.BLUE;
 	private final Color colorRtL = Color.BLACK;
 
 	// TODO Constructeur(s)
 	public Car(Game game, Case leftPosition, boolean leftToRight) {
 		this.game = game;
 		this.leftPosition = leftPosition;
-		this.leftToRight = leftToRight;
+		//this.leftToRight = leftToRight;
 		Random rn = new Random();
 
 		this.length = rn.nextInt() % (maxLength);
@@ -59,6 +59,15 @@ public class Car {
 			//}
 			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
 		}
+	}
+	
+	
+	public boolean equals(Object o) {
+		if(getClass() == o.getClass()) {
+			Car obj = (Car) o;
+			return this.leftPosition.equals(obj.getCase());
+		}
+		return false;
 	}
 
 }

@@ -1,7 +1,6 @@
 package environment;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 import gameCommons.Case;
 import gameCommons.Game;
@@ -50,9 +49,16 @@ public class Lane {
 		}
 
 		this.mayAddCar();
-		
-		for (Car car : this.cars) {
-			car.addToGraphics();
+
+		ArrayList<Car> buffer = new ArrayList<Car>(this.cars);
+		for (Car car : buffer) {
+			if (car.getCase().absc < -5 || car.getCase().absc > this.game.width + 5) {
+				this.cars.remove(car);
+				//System.out.println("remove" + i);
+			}else {
+				car.addToGraphics();
+				//System.out.println(car.getCase().ord);
+			}
 		}
 
 	}

@@ -9,4 +9,13 @@ public class Case {
 		this.absc = absc;
 		this.ord = ord;
 	}
+	
+	public boolean equals(Object o) {
+		if(getClass() == o.getClass()) {
+			Case obj = (Case) o;
+			return this.absc == obj.absc && this.ord == obj.ord;
+		}else {
+			return false;
+		}
+	}
 }
