@@ -27,15 +27,10 @@ public class Lane {
 
 	public void update() {
 		// TODO
-
+		
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge
-
-		// Les voitures doivent etre ajoutes a l interface graphique meme quand
-		// elle ne bougent pas
-
-		// A chaque tic d'horloge, une voiture peut �tre ajout�e
 		this.timer += 1;
 		if (this.timer == this.speed) {
 			this.timer = 0;
@@ -47,17 +42,18 @@ public class Lane {
 				car.updateAndMoveTo(new Case(car.getCase().absc + increaser, car.getCase().ord));
 			}
 		}
-
+		
+		// A chaque tic d'horloge, une voiture peut �tre ajout�e
 		this.mayAddCar();
-
+		
+		// Les voitures doivent etre ajoutes a l interface graphique meme quand
+		// elle ne bougent pas
 		ArrayList<Car> buffer = new ArrayList<Car>(this.cars);
 		for (Car car : buffer) {
 			if (car.getCase().absc < -5 || car.getCase().absc > this.game.width + 5) {
 				this.cars.remove(car);
-				//System.out.println("remove" + i);
 			}else {
 				car.addToGraphics();
-				//System.out.println(car.getCase().ord);
 			}
 		}
 
