@@ -7,9 +7,9 @@ import gameCommons.IFrog;
 
 public class Frog implements IFrog {
 
-	private static Game m_game;
-	private static Case m_position;
-	private static Direction m_direction;
+	protected static Game m_game;
+	protected static Case m_position;
+	protected static Direction m_direction;
 
 	public Frog(Game game, Case position, Direction direction) {
 		m_game = game;
@@ -48,7 +48,7 @@ public class Frog implements IFrog {
 	 * @return Case gives a case that is the closest to given coords, while being in
 	 *         bounds.
 	 */
-	private static Case limitedCase(int abs, int ord) {
+	protected static Case limitedCase(int abs, int ord) {
 		while (abs > m_game.width - 1) {
 			abs -= 1;
 		}
@@ -89,5 +89,10 @@ public class Frog implements IFrog {
 			m_game.testLose();
 			break;
 		}
+	}
+
+	@Override
+	public Case getOnScreenPosition() {
+		return m_position;
 	}
 }

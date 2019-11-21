@@ -49,7 +49,6 @@ public class Environment implements IEnvironment {
 	 */
 	public boolean isWinningPosition(Case c) {
 		return c.ord == game.height - 1;
-
 	}
 
 	/**
@@ -59,5 +58,12 @@ public class Environment implements IEnvironment {
 		for (Lane lane : lanes) {
 			lane.update();
 		}
+	}
+
+	@Override
+	public void showCar() {
+		for (Lane lane : lanes) {
+			lane.show();
+		}	
 	}
 }

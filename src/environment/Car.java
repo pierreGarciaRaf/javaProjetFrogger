@@ -23,8 +23,6 @@ public class Car {
 		this.leftToRight = leftToRight;
 		this.length = rn.nextInt() % (maxLength);
 		this.leftPosition = new Case(leftPosition.absc - (leftToRight ? length :0),leftPosition.ord);
-
-		this.addToGraphics();
 	}
 
 	public Case getCase() {
@@ -51,13 +49,13 @@ public class Car {
 	 * Fourni : addToGraphics() permettant d'ajouter un element graphique
 	 * correspondant a la voiture
 	 */
-	public void addToGraphics() {
+	public void addToGraphics(int ord) {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
 			if (this.leftToRight) {
 				color = colorLtR;
 			}
-			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
+			game.getGraphic().add(new Element(leftPosition.absc + i, ord, color));
 		}
 	}
 	

@@ -23,5 +23,11 @@ public interface IEnvironment {
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
 	public void update();
+	
+	/**
+	 * Affiche les voitures
+	 */
+	
+	public void showCar();
 
 }

@@ -2,26 +2,40 @@ package frog;
 
 import gameCommons.Case;
 import gameCommons.Direction;
-import gameCommons.IFrog;
+import gameCommons.Game;
 
-public class FrogInf implements IFrog{
+public class FrogInf extends Frog {
 
-	@Override
-	public Case getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+	public FrogInf(Game game, Case position, Direction direction) {
+		super(game, position, direction);
 	}
 
-	@Override
-	public Direction getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+	public FrogInf(Game game) {
+		super(game, new Case(game.width/2, 1), Direction.up);
 	}
 
-	@Override
+	public Case getOnScreenPosition() {
+		return new Case(m_position.absc, 1);
+	}
+
 	public void move(Direction key) {
-		// TODO Auto-generated method stub
-		
+		switch (key) {
+		case up:
+			m_position = limitedCase(m_position.absc, m_position.ord + 1);
+			m_game.testLose();
+			break;
+		case down:
+			m_position = limitedCase(m_position.absc, m_position.ord - 1);
+			m_game.testLose();
+			break;
+		case left:
+			m_position = limitedCase(m_position.absc - 1, m_position.ord);
+			m_game.testLose();
+			break;
+		case right:
+			m_position = limitedCase(m_position.absc + 1, m_position.ord);
+			m_game.testLose();
+			break;
+		}
 	}
-
 }

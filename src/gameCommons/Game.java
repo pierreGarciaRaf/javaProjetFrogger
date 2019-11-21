@@ -67,8 +67,8 @@ public class Game {
 	}
 
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
+	 * le cas
 	 * 
 	 * @return true si le partie est perdue
 	 */
@@ -82,8 +82,8 @@ public class Game {
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel est
+	 * le cas
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
@@ -96,13 +96,21 @@ public class Game {
 		return false;
 	}
 
+	// gere l'affichage
+	private void show() {
+		environment.showCar();
+		this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
+	}
+
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */
 	public void update() {
-		graphic.clear();
 		environment.update();
-		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+		
+		graphic.clear();
+		show();
+		
 		testLose();
 		testWin();
 	}

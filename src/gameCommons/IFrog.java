@@ -2,6 +2,8 @@ package gameCommons;
 
 public interface IFrog {
 	
+	public Case getOnScreenPosition();
+	
 	/**
 	 * Donne la position actuelle de la grenouille
 	 * @return
