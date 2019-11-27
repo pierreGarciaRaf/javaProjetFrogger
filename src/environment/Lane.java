@@ -54,7 +54,6 @@ public class Lane {
 				this.cars.remove(car);
 			}
 		}
-
 	}
 
 	// TODO : ajout de methodes
