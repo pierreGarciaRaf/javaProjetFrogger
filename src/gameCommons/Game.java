@@ -75,7 +75,7 @@ public class Game {
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
-			//graphic.endGameScreen("YOU LOSE!");
+			graphic.endGameScreen("YOU LOSE!");
 			return true;
 		}
 		return false;

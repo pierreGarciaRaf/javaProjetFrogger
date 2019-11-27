@@ -22,7 +22,9 @@ public class Lane {
 		this.speed = speed;
 		this.leftToRight = leftToRight;
 		this.density = density;
-
+		for (int time = 0; time < 300; time+= 1) {
+			this.update();
+		}
 	}
 
 	public void update() {
@@ -60,7 +62,6 @@ public class Lane {
 
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {
-			System.out.println("{"+c.ord+"} != {"+ord+"}");
 			return true;
 		}else {
 		}
