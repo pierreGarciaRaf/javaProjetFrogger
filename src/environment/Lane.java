@@ -29,7 +29,6 @@ public class Lane {
 
 	public void update() {
 		// TODO
-
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge

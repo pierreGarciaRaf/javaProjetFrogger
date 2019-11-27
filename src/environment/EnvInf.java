@@ -33,7 +33,6 @@ public class EnvInf implements IEnvironment {
 
 	@Override
 	public boolean isSafe(Case c) {
-		System.out.println("{"+c.absc + "; " +c.ord+"}"+", lane size : "+ lanes.size());
 		return lanes.get(c.ord).isSafe(c);
 	}
 
@@ -58,7 +57,7 @@ public class EnvInf implements IEnvironment {
 				this.lanes.get(i).update();
 		}
 	}
-
+	
 	@Override
 	public void showCar() {
 		int loadedStart = this.screenPosition;

@@ -7,8 +7,10 @@ import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
 public class Game {
-
+	//variables qui évoluent pendant la partie.
+	public int time;
 	public final Random randomGen = new Random();
+	private boolean gameFinished; 
 
 	// Caracteristique de la partie
 	public final int width;
@@ -38,6 +40,8 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.gameFinished = false; 
+
 	}
 
 	/**
@@ -75,7 +79,7 @@ public class Game {
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
-			graphic.endGameScreen("YOU LOSE!");
+			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition());
 			return true;
 		}
 		return false;
@@ -109,13 +113,15 @@ public class Game {
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */
 	public void update() {
-		environment.update();
-		
-		graphic.clear();
-		show();
-		
-		testLose();
-		testWin();
-	}
-
+		if (!gameFinished) {
+			environment.update();
+			
+			graphic.clear();
+			show();
+			
+			gameFinished = testLose();
+			gameFinished = testWin() || gameFinished;
+			System.out.println(gameFinished);
+			}
+		}
 }

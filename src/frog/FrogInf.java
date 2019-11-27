@@ -35,19 +35,15 @@ public class FrogInf extends Frog {
 		switch (key) {
 		case up:
 			m_position = limitedCase(m_position.absc, m_position.ord+1);
-			m_game.testLose();
 			break;
 		case down:
 			m_position = limitedCase(m_position.absc, m_position.ord-1);
-			m_game.testLose();
 			break;
 		case left:
 			m_position = limitedCase(m_position.absc - 1, m_position.ord);
-			m_game.testLose();
 			break;
 		case right:
 			m_position = limitedCase(m_position.absc + 1, m_position.ord);
-			m_game.testLose();
 			break;
 		}
 	}

@@ -15,7 +15,6 @@ import frog.FrogInf;
 
 public class Main {
 	public static void main(String[] args) {
-
 		int gameID = 0;
 		Scanner scan = new Scanner(System.in);
 		while (!(gameID == 1 || gameID == 2)) {
@@ -25,7 +24,7 @@ public class Main {
 
 		// Caract�ristiques du jeu
 		int width = 26;
-		int height = 20;
+		int height = 20*gameID;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
 		double defaultDensity = 0.2;
@@ -57,6 +56,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				game.update();
 				graphic.repaint();
+				game.time+=tempo;
 			}
 		});
 		timer.setInitialDelay(0);
