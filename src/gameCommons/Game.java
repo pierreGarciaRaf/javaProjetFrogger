@@ -79,7 +79,7 @@ public class Game {
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
-			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition());
+			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition(),time);
 			return true;
 		}
 		return false;
@@ -94,7 +94,7 @@ public class Game {
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
 			System.out.println("GAME!");
-			graphic.endGameScreen("GAME!");
+			graphic.endGameScreen("GAME!",time);
 			return true;
 		}
 		return false;
@@ -121,7 +121,6 @@ public class Game {
 			
 			gameFinished = testLose();
 			gameFinished = testWin() || gameFinished;
-			System.out.println(gameFinished);
 			}
 		}
 }

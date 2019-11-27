@@ -15,7 +15,7 @@ public class FrogInf extends Frog {
 	}
 
 	public Case getOnScreenPosition() {
-		return new Case(m_position.absc, 1);
+		return new Case(m_position.absc, m_position.ord - m_game.getScreenPosition());
 	}
 
 	protected static Case limitedCase(int abs, int ord) {
