@@ -18,14 +18,27 @@ public class FrogInf extends Frog {
 		return new Case(m_position.absc, 1);
 	}
 
+	protected static Case limitedCase(int abs, int ord) {
+		while (abs > m_game.width - 1) {
+			abs -= 1;
+		}
+		while (abs < 0) {
+			abs += 1;
+		}
+		while (ord <= 0) {
+			ord += 1;
+		}
+		return new Case(abs, ord);
+	}
+
 	public void move(Direction key) {
 		switch (key) {
 		case up:
-			m_position = limitedCase(m_position.absc, m_position.ord + 1);
+			m_position = limitedCase(m_position.absc, m_position.ord+1);
 			m_game.testLose();
 			break;
 		case down:
-			m_position = limitedCase(m_position.absc, m_position.ord - 1);
+			m_position = limitedCase(m_position.absc, m_position.ord-1);
 			m_game.testLose();
 			break;
 		case left:

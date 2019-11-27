@@ -66,4 +66,7 @@ public class Environment implements IEnvironment {
 			lane.show();
 		}	
 	}
+	public int getScreenPosition() {
+		return 0;
+	}
 }

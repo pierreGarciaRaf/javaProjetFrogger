@@ -1,7 +1,12 @@
 package gameCommons;
 
 public interface IEnvironment {
-
+	/**
+	 * Gives the screen position.
+	 * @return screen position.
+	 */
+	public int getScreenPosition();
+	
 	/**
 	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
 	 * sans mourir

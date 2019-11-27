@@ -75,7 +75,7 @@ public class Game {
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
-			graphic.endGameScreen("YOU LOSE!");
+			//graphic.endGameScreen("YOU LOSE!");
 			return true;
 		}
 		return false;
@@ -102,6 +102,9 @@ public class Game {
 		this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
 	}
 
+	public int getScreenPosition() {
+		return environment.getScreenPosition();
+	}
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */

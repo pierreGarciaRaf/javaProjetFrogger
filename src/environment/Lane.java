@@ -61,7 +61,9 @@ public class Lane {
 
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {
+			System.out.println("{"+c.ord+"} != {"+ord+"}");
 			return true;
+		}else {
 		}
 		for (Car car : cars) {
 			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc) {

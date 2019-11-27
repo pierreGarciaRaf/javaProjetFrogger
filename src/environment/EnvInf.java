@@ -33,6 +33,7 @@ public class EnvInf implements IEnvironment {
 
 	@Override
 	public boolean isSafe(Case c) {
+		System.out.println("{"+c.absc + "; " +c.ord+"}"+", lane size : "+ lanes.size());
 		return lanes.get(c.ord).isSafe(c);
 	}
 
@@ -49,7 +50,8 @@ public class EnvInf implements IEnvironment {
 		
 		int i = this.lanes.size() - 1;
 		while(i < loadedEnd) {
-			lanes.add(new Lane(this.game, i + 1, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(), this.game.defaultDensity));
+			i=i+1;
+			lanes.add(new Lane(this.game, i, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(), this.game.defaultDensity));
 		}
 		
 		for(i = loadedStart; i < loadedEnd; i++) {
@@ -64,6 +66,9 @@ public class EnvInf implements IEnvironment {
 		for(int i = loadedStart; i < loadedEnd; i++) {
 				this.lanes.get(i).show(i - loadedStart);
 		}	
+	}
+	public int getScreenPosition() {
+		return screenPosition;
 	}
 
 }
