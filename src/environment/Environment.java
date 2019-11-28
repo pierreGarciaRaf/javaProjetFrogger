@@ -17,15 +17,15 @@ public class Environment implements IEnvironment {
 	public Environment(Game game) {
 		this.game = game;
 
-		lanes.add(new Lane(game, 0, 1, true, 0));
+		lanes.add(new Road(game, 0, 1, true, 0));
 
 		Random rand = new Random();
 		
 		for (int ord = 1; ord < game.height - 1; ord++) {
-			lanes.add(new Lane(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 
-		lanes.add(new Lane(game, game.height - 1, 1, true, 0));
+		lanes.add(new Road(game, game.height - 1, 1, true, 0));
 	}
 
 	// TODO

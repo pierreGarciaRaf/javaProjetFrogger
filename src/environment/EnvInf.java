@@ -23,11 +23,11 @@ public class EnvInf implements IEnvironment {
 		this.game = game;
 		this.frog = frog;
 		
-		lanes.add(new Lane(this.game, 0, 1, true, 0));
-		lanes.add(new Lane(this.game, 1, 1, true, 0));
+		lanes.add(new Road(this.game, 0, 1, true, 0));
+		lanes.add(new Road(this.game, 1, 1, true, 0));
 		
 		for (int ord = 2; ord < this.game.height; ord++) {
-			lanes.add(new Lane(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(), this.game.defaultDensity));
+			lanes.add(new Road(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(), this.game.defaultDensity));
 		}
 	}
 
