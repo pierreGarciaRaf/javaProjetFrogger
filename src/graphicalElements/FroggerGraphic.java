@@ -79,8 +79,8 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	public void endGameScreen(String s, int time_ms) {
 		frame.remove(this);
-		JLabel label = new JLabel(s + "\n" +time_ms/60000 +"m"+ time_ms%60000/1000+"s"+time_ms%1000);
-		label.setFont(new Font("Verdana", 1, 20));
+		JLabel label = new JLabel(s + "//time : " +time_ms/60000 +"m"+ time_ms%60000/1000+"s"+time_ms%1000);
+		label.setFont(new Font("Verdana", 1, 10));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setSize(this.getSize());
 		frame.getContentPane().add(label);
