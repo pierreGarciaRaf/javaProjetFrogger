@@ -15,9 +15,9 @@ public class Car extends Vehicle{
 	
 	public void addToGraphics(int ord) {
 		for (int i = 0; i < length; i++) {
-			Color color = colorRtL;
+			Color color = Color.BLACK;
 			if (this.leftToRight) {
-				color = colorLtR;
+				color = Color.BLACK;
 			}
 			game.getGraphic().add(new Element(leftPosition.absc + i, ord, color));
 		}

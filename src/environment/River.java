@@ -1,5 +1,8 @@
 package environment;
 
+import java.util.ArrayList;
+
+import gameCommons.Case;
 import gameCommons.Game;
 
 public class River extends Lane {
@@ -12,14 +15,47 @@ public class River extends Lane {
 	}
 
 	public void update() {
+		this.timer += 1;
+		if (this.timer == this.speed) {
+			this.timer = 0;
+			int increaser = -1;
+			if (this.leftToRight) {
+				increaser = 1;
+			}
+			for (Vehicle vehicle : this.vehicles) {
+				vehicle.updateAndMoveTo(new Case(vehicle.getCase().absc + increaser, vehicle.getCase().ord));
+			}
+		}
 
+		// A chaque tic d'horloge, une voiture peut �tre ajout�e
+		this.mayAddWater();
+
+		// Les voitures doivent etre ajoutes a l interface graphique meme quand
+		// elle ne bougent pas
+		ArrayList<Vehicle> buffer = new ArrayList<Vehicle>(this.vehicles);
+		for (Vehicle vehicle : buffer) {
+			if (vehicle.getCase().absc < -5 || vehicle.getCase().absc > this.game.width + 5) {
+				this.vehicles.remove(vehicle);
+			}
+		}
 	}
-
-	public void show(int ord) {
+	
+	public int hasToMove(Case c) {
+		if (timer == this.speed-1) {
+			return super.leftToRight ? 1 : -1;
+		}
+		else {
+			return 0;
+		}
 		
 	}
 
-	public void show() {
-		show(this.ord);
+
+	private void mayAddWater() {
+		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+			if (game.randomGen.nextDouble() < density) {
+				vehicles.add(new Water(game, getBeforeFirstCase(), leftToRight));
+			}
+		}
 	}
 }

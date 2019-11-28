@@ -16,6 +16,10 @@ public interface IEnvironment {
 	 */
 	public boolean isSafe(Case c);
 
+	
+	public int hasToMove(Case c);
+	
+	
 	/**
 	 * Teste si la case est une case d'arrivee
 	 * 

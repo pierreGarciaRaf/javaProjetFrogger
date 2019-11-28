@@ -15,7 +15,6 @@ public class Road extends Lane{
 	}
 	
 	public void update() {
-		// TODO
 		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
 		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge
@@ -44,14 +43,13 @@ public class Road extends Lane{
 		}
 	}
 	
-	public void show(int ord) {
-		for (Vehicle vehicle : this.vehicles) {
-			vehicle.addToGraphics(ord);
+	
+	private void mayAddCar() {
+		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+			if (game.randomGen.nextDouble() < density) {
+				vehicles.add(new Car(game, getBeforeFirstCase(), leftToRight));
+			}
 		}
-	}
-
-	public void show() {
-		show(this.ord);
 	}
 
 }

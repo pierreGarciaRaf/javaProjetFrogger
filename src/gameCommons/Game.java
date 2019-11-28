@@ -70,6 +70,15 @@ public class Game {
 		return graphic;
 	}
 
+	public void moveBecauseOfWater() {
+		int hasToMove = environment.hasToMove(frog.getPosition());
+		if (hasToMove ==0) {
+			return;
+		}
+		frog.move(hasToMove > 0 ?
+				Direction.right :
+				Direction.left);
+	}
 	/**
 	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
 	 * le cas
@@ -114,6 +123,7 @@ public class Game {
 	 */
 	public void update() {
 		if (!gameFinished) {
+			moveBecauseOfWater();
 			environment.update();
 			
 			graphic.clear();

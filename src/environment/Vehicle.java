@@ -54,7 +54,7 @@ public class Vehicle {
 
 	public boolean equals(Object o) {
 		if (getClass() == o.getClass()) {
-			Car obj = (Car) o;
+			Vehicle obj = (Vehicle) o;
 			return this.leftPosition.equals(obj.getCase());
 		}
 		return false;

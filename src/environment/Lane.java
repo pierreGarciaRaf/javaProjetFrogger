@@ -28,8 +28,6 @@ public class Lane {
 
 	}
 
-	// TODO : ajout de methodes
-
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {
 			return true;
@@ -45,30 +43,15 @@ public class Lane {
 		}
 		return true;
 	}
-	/*
-	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase()
-	 */
 
-	/**
-	 * Ajoute une voiture au d�but de la voie avec probabilit� �gale � la
-	 * densit�, si la premi�re case de la voie est vide
-	 */
-	protected void mayAddCar() {
-		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
-			if (game.randomGen.nextDouble() < density) {
-				vehicles.add(new Car(game, getBeforeFirstCase(), leftToRight));
-			}
-		}
-	}
-
-	private Case getFirstCase() {
+	protected Case getFirstCase() {
 		if (leftToRight) {
 			return new Case(0, ord);
 		} else
 			return new Case(game.width - 1, ord);
 	}
 
-	private Case getBeforeFirstCase() {
+	Case getBeforeFirstCase() {
 		if (leftToRight) {
 			return new Case(-1, ord);
 		} else
@@ -79,6 +62,10 @@ public class Lane {
 		for (Vehicle vehicle : this.vehicles) {
 			vehicle.addToGraphics(ord);
 		}
+	}
+
+	public int hasToMove(Case c) {
+		return 0;
 	}
 
 	public void show() {
