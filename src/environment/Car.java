@@ -7,48 +7,12 @@ import gameCommons.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
 
-public class Car {
-	private Game game;
-	private Case leftPosition;
-	private boolean leftToRight;
-	private int length;
-	private int maxLength = 4;
-	private final Color colorLtR = Color.BLUE;
-	private final Color colorRtL = Color.BLACK;
+public class Car extends Vehicle{
 
-	// TODO Constructeur(s)
 	public Car(Game game, Case leftPosition, boolean leftToRight) {
-		Random rn = new Random();
-		this.game = game;
-		this.leftToRight = leftToRight;
-		this.length = rn.nextInt() % (maxLength);
-		this.leftPosition = new Case(leftPosition.absc - (leftToRight ? length :0),leftPosition.ord);
+		super(game, leftPosition, leftToRight);
 	}
-
-	public Case getCase() {
-		return new Case(leftPosition.absc, leftPosition.ord);
-	}
-
-	public int getLength() {
-		return length;
-	}
-
-	// TODO : ajout de methodes
-
-	public void updateAndMoveTo(Case caseToGo) {
-		leftPosition = caseToGo;
-		//addToGraphics();
-
-	}
-
-	public void update() {
-		updateAndMoveTo(this.leftPosition);
-	}
-
-	/*
-	 * Fourni : addToGraphics() permettant d'ajouter un element graphique
-	 * correspondant a la voiture
-	 */
+	
 	public void addToGraphics(int ord) {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
@@ -58,14 +22,4 @@ public class Car {
 			game.getGraphic().add(new Element(leftPosition.absc + i, ord, color));
 		}
 	}
-	
-	
-	public boolean equals(Object o) {
-		if(getClass() == o.getClass()) {
-			Car obj = (Car) o;
-			return this.leftPosition.equals(obj.getCase());
-		}
-		return false;
-	}
-
 }

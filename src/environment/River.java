@@ -20,6 +20,6 @@ public class River extends Lane {
 	}
 
 	public void show() {
-		
+		show(this.ord);
 	}
 }

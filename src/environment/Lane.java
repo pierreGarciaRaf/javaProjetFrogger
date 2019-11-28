@@ -11,7 +11,7 @@ public class Lane {
 	protected Game game;
 	protected int ord;
 	protected int speed;
-	protected ArrayList<Car> cars = new ArrayList<>();
+	protected ArrayList<Vehicle> vehicles = new ArrayList<>();
 	protected boolean leftToRight;
 	protected double density;
 
@@ -35,8 +35,8 @@ public class Lane {
 			return true;
 		} else {
 		}
-		for (Car car : cars) {
-			if (car.getCase().absc <= c.absc && car.getCase().absc + car.getLength() > c.absc) {
+		for (Vehicle vehicle : vehicles) {
+			if (vehicle.getCase().absc <= c.absc && vehicle.getCase().absc + vehicle.getLength() > c.absc) {
 				// System.out.println("not safe");
 				return false;
 			} else {
@@ -56,7 +56,7 @@ public class Lane {
 	protected void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
-				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
+				vehicles.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}
 		}
 	}
@@ -76,8 +76,8 @@ public class Lane {
 	}
 
 	public void show(int ord) {
-		for (Car car : this.cars) {
-			car.addToGraphics(ord);
+		for (Vehicle vehicle : this.vehicles) {
+			vehicle.addToGraphics(ord);
 		}
 	}
 

@@ -26,8 +26,8 @@ public class Road extends Lane{
 			if (this.leftToRight) {
 				increaser = 1;
 			}
-			for (Car car : this.cars) {
-				car.updateAndMoveTo(new Case(car.getCase().absc + increaser, car.getCase().ord));
+			for (Vehicle vehicle : this.vehicles) {
+				vehicle.updateAndMoveTo(new Case(vehicle.getCase().absc + increaser, vehicle.getCase().ord));
 			}
 		}
 
@@ -36,17 +36,17 @@ public class Road extends Lane{
 
 		// Les voitures doivent etre ajoutes a l interface graphique meme quand
 		// elle ne bougent pas
-		ArrayList<Car> buffer = new ArrayList<Car>(this.cars);
-		for (Car car : buffer) {
-			if (car.getCase().absc < -5 || car.getCase().absc > this.game.width + 5) {
-				this.cars.remove(car);
+		ArrayList<Vehicle> buffer = new ArrayList<Vehicle>(this.vehicles);
+		for (Vehicle vehicle : buffer) {
+			if (vehicle.getCase().absc < -5 || vehicle.getCase().absc > this.game.width + 5) {
+				this.vehicles.remove(vehicle);
 			}
 		}
 	}
 	
 	public void show(int ord) {
-		for (Car car : this.cars) {
-			car.addToGraphics(ord);
+		for (Vehicle vehicle : this.vehicles) {
+			vehicle.addToGraphics(ord);
 		}
 	}
 
