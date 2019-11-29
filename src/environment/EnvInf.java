@@ -22,24 +22,18 @@ public class EnvInf implements IEnvironment {
 		screenPosition = 0;
 		this.game = game;
 		this.frog = frog;
-		this.genLanes  = new GeneratorState(10,0.7f);
+		this.genLanes  = new GeneratorState(10,0.4f);
 		lanes.add(new Road(this.game, 0, 1, true, 0));
 		lanes.add(new Road(this.game, 1, 1, true, 0));
 
 		for (int ord = 2; ord < this.game.height; ord++) {
-			if (rand.nextInt(2) < 1) {
-				lanes.add(new Road(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
-						this.game.defaultDensity));
-			}else {
-				lanes.add(new River(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
-						this.game.defaultDensity));
-			}
+			addAndUpdateGenerator(1,ord);
 		}
 	}
 
 	@Override
 	public boolean isSafe(Case c) {
-		return true || lanes.get(c.ord).isSafe(c);
+		return lanes.get(c.ord).isSafe(c);
 	}
 
 	@Override

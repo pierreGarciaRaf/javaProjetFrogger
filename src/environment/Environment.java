@@ -13,10 +13,12 @@ public class Environment implements IEnvironment {
 	
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
+	
 
+	
 	public Environment(Game game) {
 		this.game = game;
-
+		
 		lanes.add(new Lane(game, 0, 1, true, 0));
 
 		Random rand = new Random();
@@ -43,6 +45,9 @@ public class Environment implements IEnvironment {
 
 		lanes.add(new Road(game, game.height - 1, 1, true, 0));
 	}
+	
+	
+
 
 	// TODO
 	/**
