@@ -9,7 +9,7 @@ import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
 
-	private final int MAXSPEED = 3;
+	private final int MAXSPEED = 4;
 	
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
@@ -17,11 +17,27 @@ public class Environment implements IEnvironment {
 	public Environment(Game game) {
 		this.game = game;
 
-		lanes.add(new Road(game, 0, 1, true, 0));
+		lanes.add(new Lane(game, 0, 1, true, 0));
 
 		Random rand = new Random();
-		
-		for (int ord = 1; ord < game.height - 1; ord++) {
+		int ord = 1;
+		for (; ord < game.height/4 - 1; ord++) {
+			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		}
+		lanes.add(new Lane(game, ord, 1, true, 0));
+		ord+=1;
+		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		ord+=1;
+		for (; ord < 3*game.height/4 - 2; ord++) {
+			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		}
+		lanes.add(new Lane(game, ord, 1, true, 0));
+		ord+=1;
+		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		ord+=1;
+		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		ord+=1;
+		for (; ord < game.height; ord++) {
 			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 
@@ -51,6 +67,9 @@ public class Environment implements IEnvironment {
 		return c.ord == game.height - 1;
 	}
 
+	public int hasToMove(Case c) {
+		return lanes.get(c.ord).hasToMove(c);
+	}
 	/**
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
