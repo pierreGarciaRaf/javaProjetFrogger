@@ -16,12 +16,13 @@ public class EnvInf implements IEnvironment {
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
 	private IFrog frog;
 	Random rand = new Random();
+	GeneratorState genLanes;
 
 	public EnvInf(Game game, IFrog frog) {
 		screenPosition = 0;
 		this.game = game;
 		this.frog = frog;
-
+		this.genLanes  = new GeneratorState(10,0.7f);
 		lanes.add(new Road(this.game, 0, 1, true, 0));
 		lanes.add(new Road(this.game, 1, 1, true, 0));
 
@@ -38,7 +39,7 @@ public class EnvInf implements IEnvironment {
 
 	@Override
 	public boolean isSafe(Case c) {
-		return lanes.get(c.ord).isSafe(c);
+		return true || lanes.get(c.ord).isSafe(c);
 	}
 
 	@Override
@@ -50,6 +51,25 @@ public class EnvInf implements IEnvironment {
 		return lanes.get(c.ord).hasToMove(c);
 	}
 
+	
+	private void addAndUpdateGenerator(int speed, int ord) {
+		switch(genLanes.generate()) {
+			case 'e':
+				lanes.add(new Lane(this.game, ord, 0, false,0));
+				break;
+			case 'w':
+				lanes.add(new River(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
+						this.game.defaultDensity));
+				break;
+			case 'r':
+				lanes.add(new Road(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
+						this.game.defaultDensity));
+				break;
+
+		}
+		genLanes.update(speed);
+	}
+	
 	@Override
 	public void update() {
 		this.screenPosition = frog.getPosition().ord - 1;
@@ -59,8 +79,7 @@ public class EnvInf implements IEnvironment {
 		int i = this.lanes.size() - 1;
 		while (i < loadedEnd) {
 			i = i + 1;
-			lanes.add(new Lane(this.game, i, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
-					this.game.defaultDensity));
+			addAndUpdateGenerator(1,i);
 		}
 
 		for (i = loadedStart; i < loadedEnd; i++) {
