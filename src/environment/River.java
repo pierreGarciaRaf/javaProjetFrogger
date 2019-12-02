@@ -10,7 +10,7 @@ import graphicalElements.Element;
 public class River extends Lane {
 
 	public River(Game game, int ord, int speed, boolean leftToRight, double density) {
-		super(game, ord, speed, leftToRight, density);
+		super(game, ord, speed, leftToRight,Math.pow(density, 0.1));
 		for (int time = 0; time < 300; time += 1) {
 			this.update();
 		}
@@ -18,8 +18,7 @@ public class River extends Lane {
 	
 	private void addToGraphics() {
 		for (int absc = 0; absc < super.game.width; absc += 1) {
-			System.out.println("en "+ absc+", "+ord);
-			game.getGraphic().add(new Element(absc , super.ord, new Color(0x654321)));
+			game.getGraphic().add(new Element(absc , super.ord - game.getScreenPosition(), new Color(0x654321)));
 		}	
 	}
 	
