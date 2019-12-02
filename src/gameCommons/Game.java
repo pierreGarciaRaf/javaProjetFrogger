@@ -125,10 +125,10 @@ public class Game {
 		if (!gameFinished) {
 			moveBecauseOfWater();
 			environment.update();
-			
+
 			graphic.clear();
 			show();
-			
+
 			gameFinished = testLose();
 			gameFinished = testWin() || gameFinished;
 			}

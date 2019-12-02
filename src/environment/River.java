@@ -1,9 +1,11 @@
 package environment;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import gameCommons.Case;
 import gameCommons.Game;
+import graphicalElements.Element;
 
 public class River extends Lane {
 
@@ -13,9 +15,17 @@ public class River extends Lane {
 			this.update();
 		}
 	}
-
+	
+	private void addToGraphics() {
+		for (int absc = 0; absc < super.game.width; absc += 1) {
+			System.out.println("en "+ absc+", "+ord);
+			game.getGraphic().add(new Element(absc , super.ord, new Color(0x654321)));
+		}	
+	}
+	
 	public void update() {
 		this.timer += 1;
+		
 		if (this.timer == this.speed) {
 			this.timer = 0;
 			int increaser = -1;
@@ -49,6 +59,12 @@ public class River extends Lane {
 		}
 		
 	}
+	
+	public void show(int ord) {
+		addToGraphics();
+		super.show(ord);
+	}
+
 
 
 	private void mayAddWater() {
