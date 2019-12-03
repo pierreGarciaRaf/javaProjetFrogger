@@ -10,7 +10,7 @@ import graphicalElements.Element;
 public class River extends Lane {
 
 	public River(Game game, int ord, int speed, boolean leftToRight, double density) {
-		super(game, ord, speed, leftToRight,Math.pow(density, 0.1));
+		super(game, ord, speed, leftToRight, density);
 		for (int time = 0; time < 300; time += 1) {
 			this.update();
 		}
@@ -18,7 +18,7 @@ public class River extends Lane {
 	
 	private void addToGraphics() {
 		for (int absc = 0; absc < super.game.width; absc += 1) {
-			game.getGraphic().add(new Element(absc , super.ord - game.getScreenPosition(), new Color(0x654321)));
+			game.getGraphic().add(new Element(absc , super.ord - game.getScreenPosition(), new Color(0x0000f8)));
 		}	
 	}
 	
@@ -37,7 +37,7 @@ public class River extends Lane {
 		}
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-		this.mayAddWater();
+		this.mayAddLog();
 
 		// Les voitures doivent etre ajoutes a l interface graphique meme quand
 		// elle ne bougent pas
@@ -47,6 +47,10 @@ public class River extends Lane {
 				this.vehicles.remove(vehicle);
 			}
 		}
+	}
+	
+	public boolean isSafe(Case c) {
+		return !super.isSafe(c);
 	}
 	
 	public int hasToMove(Case c) {
@@ -66,10 +70,10 @@ public class River extends Lane {
 
 
 
-	private void mayAddWater() {
-		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+	private void mayAddLog() {
+		if (! isSafe(getFirstCase()) && ! isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {
-				vehicles.add(new Water(game, getBeforeFirstCase(), leftToRight));
+				vehicles.add(new Log(game, getBeforeFirstCase(), leftToRight));
 			}
 		}
 	}
