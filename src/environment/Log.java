@@ -7,9 +7,8 @@ import gameCommons.Game;
 import graphicalElements.Element;
 
 public class Log extends Vehicle{
-
 	public Log(Game game, Case leftPosition, boolean leftToRight) {
-		super(game, leftPosition, leftToRight);
+		super(game, leftPosition, leftToRight,2,4);
 	}
 
 	public void addToGraphics(int ord) {

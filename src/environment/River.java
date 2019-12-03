@@ -9,6 +9,7 @@ import graphicalElements.Element;
 
 public class River extends Lane {
 
+	
 	public River(Game game, int ord, int speed, boolean leftToRight, double density) {
 		super(game, ord, speed, leftToRight, density);
 		for (int time = 0; time < 300; time += 1) {

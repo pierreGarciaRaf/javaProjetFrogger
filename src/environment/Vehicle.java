@@ -12,16 +12,20 @@ public class Vehicle {
 	protected Case leftPosition;
 	protected boolean leftToRight;
 	protected int length;
-	protected int maxLength = 4;
+
 	protected final Color colorLtR = Color.BLUE;
 	protected final Color colorRtL = Color.BLACK;
-
-	public Vehicle(Game game, Case leftPosition, boolean leftToRight) {
+	
+	public Vehicle(Game game, Case leftPosition, boolean leftToRight,int minLength, int maxLength) {
 		Random rn = new Random();
 		this.game = game;
 		this.leftToRight = leftToRight;
-		this.length = rn.nextInt() % (maxLength);
+		this.length = minLength + Math.abs(rn.nextInt()) % (maxLength-minLength+1);
 		this.leftPosition = new Case(leftPosition.absc - (leftToRight ? length :0),leftPosition.ord);
+	}
+	
+	public Vehicle(Game game, Case leftPosition, boolean leftToRight) {
+		this(game,leftPosition,leftToRight,1,4);
 	}
 
 	public Case getCase() {
