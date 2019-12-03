@@ -17,6 +17,11 @@ public class Vehicle {
 	protected final Color colorRtL = Color.BLACK;
 	
 	public Vehicle(Game game, Case leftPosition, boolean leftToRight,int minLength, int maxLength) {
+		if (minLength >= maxLength) {
+			System.out.println("ERROR, minLength >= maxLength : "+minLength+" >= "+maxLength
+					+"\n~~put minLength = maxLength - 1~~");
+			minLength = maxLength - 1;
+		}
 		Random rn = new Random();
 		this.game = game;
 		this.leftToRight = leftToRight;
@@ -25,7 +30,7 @@ public class Vehicle {
 	}
 	
 	public Vehicle(Game game, Case leftPosition, boolean leftToRight) {
-		this(game,leftPosition,leftToRight,1,4);
+		this(game,leftPosition,leftToRight,1,3);
 	}
 
 	public Case getCase() {
