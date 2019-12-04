@@ -15,7 +15,11 @@ public class Environment implements IEnvironment {
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
 	
 
-	
+	/*
+	 * Class constructor
+	 * initialize evry lane
+	 * @param game a reference to the game
+	 */
 	public Environment(Game game) {
 		this.game = game;
 		
@@ -49,7 +53,7 @@ public class Environment implements IEnvironment {
 	
 
 
-	// TODO
+	
 	/**
 	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
 	 * sans mourir
@@ -72,9 +76,15 @@ public class Environment implements IEnvironment {
 		return c.ord == game.height - 1;
 	}
 
+	/*
+	 * Check if an entity at the specified case have to move for some reason
+	 * @param c the position
+	 * @return an int : -1, 0 or 1 depending of the direction
+	 */
 	public int hasToMove(Case c) {
 		return lanes.get(c.ord).hasToMove(c);
 	}
+	
 	/**
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
@@ -84,12 +94,16 @@ public class Environment implements IEnvironment {
 		}
 	}
 
-	@Override
+	/*
+	 * Show evry car or log
+	 * call the show method of evry element in the lane
+	 */
 	public void showCar() {
 		for (Lane lane : lanes) {
 			lane.show();
 		}	
 	}
+	
 	public int getScreenPosition() {
 		return 0;
 	}

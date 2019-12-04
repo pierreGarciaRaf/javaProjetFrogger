@@ -8,7 +8,7 @@ import gameCommons.Game;
 public class Lane {
 	protected int timer;
 	protected int phase = 100;
-	
+
 	protected Game game;
 	protected int ord;
 	protected int speed;
@@ -16,8 +16,22 @@ public class Lane {
 	protected boolean leftToRight;
 	protected double density;
 
-	// TODO : Constructeur(s)
-	public Lane(Game game, int ord, int speed,int phase, boolean leftToRight, double density) {
+	/*
+	 * class constructor
+	 * 
+	 * @param game
+	 * 
+	 * @param ord
+	 * 
+	 * @param speed
+	 * 
+	 * @param phase
+	 * 
+	 * @param leftToRight
+	 * 
+	 * @param density
+	 */
+	public Lane(Game game, int ord, int speed, int phase, boolean leftToRight, double density) {
 		this.game = game;
 		this.ord = ord;
 		this.speed = speed;
@@ -26,13 +40,29 @@ public class Lane {
 		this.density = density;
 	}
 
+	/*
+	 * Overloded class constructor
+	 * 
+	 * @param game
+	 * 
+	 * @param ord
+	 * 
+	 * @param speed
+	 * 
+	 * @param leftToRight
+	 * 
+	 * @param density
+	 */
 	public Lane(Game game, int ord, int speed, boolean leftToRight, double density) {
-		this(game,ord,speed,100,leftToRight,density);
+		this(game, ord, speed, 100, leftToRight, density);
 	}
 
+	/*
+	 * 
+	 */
 	public void update() {
 		this.timer += this.speed;
-		
+
 		if (this.timer >= phase) {
 			this.timer %= phase;
 			int increaser = -1;
@@ -52,8 +82,11 @@ public class Lane {
 
 	}
 
-	
-
+	/*
+	 * Check if the case is safe
+	 * 
+	 * @param c
+	 */
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {
 			return true;
@@ -70,6 +103,9 @@ public class Lane {
 		return true;
 	}
 
+	/*
+	 * 
+	 */
 	protected Case getFirstCase() {
 		if (leftToRight) {
 			return new Case(0, ord);
@@ -77,6 +113,9 @@ public class Lane {
 			return new Case(game.width - 1, ord);
 	}
 
+	/*
+	 * 
+	 */
 	Case getBeforeFirstCase() {
 		if (leftToRight) {
 			return new Case(-1, ord);
@@ -84,16 +123,25 @@ public class Lane {
 			return new Case(game.width, ord);
 	}
 
+	/*
+	 * @param ord
+	 */
 	public void show(int ord) {
 		for (Vehicle vehicle : this.vehicles) {
 			vehicle.addToGraphics(ord);
 		}
 	}
 
+	/*
+	 * @param c
+	 */
 	public int hasToMove(Case c) {
 		return 0;
 	}
 
+	/*
+	 * 
+	 */
 	public void show() {
 		show(this.ord);
 	}
