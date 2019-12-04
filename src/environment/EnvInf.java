@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import gameCommons.Case;
+import gameCommons.Frogs;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
 import gameCommons.IFrog;
@@ -15,15 +16,16 @@ public class EnvInf implements IEnvironment {
 	private int screenPosition;
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
-	private IFrog frog;
+	private Frogs frogs;
 	Random rand = new Random();
 	GeneratorState genLanes;
 
-	public EnvInf(Game game, IFrog frog) {
+	public EnvInf(Game game, Frogs frogs) {
 		screenPosition = 0;
 		this.game = game;
-		this.frog = frog;
+		this.frogs = frogs;
 		this.genLanes  = new GeneratorState(10,0.4f);
+		this.lanes = new ArrayList<Lane>(0);
 		lanes.add(new Road(this.game, 0, 1, true, 0));
 		lanes.add(new Road(this.game, 1, 1, true, 0));
 
@@ -43,6 +45,7 @@ public class EnvInf implements IEnvironment {
 	}
 	
 	public int hasToMove(Case c) {
+		System.out.println(c.absc+"; "+c.ord);
 		return lanes.get(c.ord).hasToMove(c);
 	}
 	private int generateSpeed() {
@@ -69,7 +72,7 @@ public class EnvInf implements IEnvironment {
 	
 	@Override
 	public void update() {
-		this.screenPosition = frog.getPosition().ord - 1;
+		this.screenPosition = frogs.lastPos().ord - 1;
 		int loadedStart = this.screenPosition;
 		int loadedEnd = loadedStart + this.game.height;
 

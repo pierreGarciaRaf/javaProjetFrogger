@@ -51,26 +51,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	}
 
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_Z:
-			frog.move(Direction.up);
-			break;
 		
-		case KeyEvent.VK_S:
-		case KeyEvent.VK_DOWN:
-			frog.move(Direction.down);
-			break;
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_Q:
-			frog.move(Direction.left);
-			break;
+		frog.moveFromInput(e.getKeyCode());
+		return;
 		
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_D:
-			frog.move(Direction.right);
-			break;
-		}
 	}
 
 	public void clear() {

@@ -2,6 +2,7 @@ package frog;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import gameCommons.Case;
 import gameCommons.Direction;
@@ -11,20 +12,37 @@ import gameCommons.IFrog;
 public class Frog implements IFrog {
 
 	protected static Game m_game;
-	protected static Case m_position;
-	protected static Direction m_direction;
-	//range dans l'ordre gauche,haut,droite,bas.
-	private ArrayList<KeyEvent> controls;
+	protected Case m_position;
+	protected Direction m_direction;
+	protected HashMap<Integer,Direction> controls;
 	
-	public Frog(Game game, Case position, Direction direction) {
+	public Frog(Game game, Case position, Direction direction, ArrayList<Integer> keys){
 		m_game = game;
 		m_position = position;
 		m_direction = direction;
+		controls = new HashMap<Integer,Direction>(0);
+		controls.put(keys.get(0), Direction.left);
+		controls.put(keys.get(1), Direction.up);
+		controls.put(keys.get(2), Direction.right);
+		controls.put(keys.get(3), Direction.down);
+	}
+	private static ArrayList<Integer>basicControls() {
+		ArrayList<Integer> controls = new ArrayList<Integer>(0);
+		controls.add(KeyEvent.VK_LEFT);
+		controls.add(KeyEvent.VK_UP);
+		controls.add(KeyEvent.VK_RIGHT);
+		controls.add(KeyEvent.VK_DOWN);
+		return controls;
+	}
+	
+	public Frog(Game game, Case position, Direction direction) {
+		this(game,position,direction,basicControls());
 	}
 
 	public Frog(Game game) {
 		this(game, new Case(game.width / 2, 0), Direction.up);
 	}
+	
 
 	/**
 	 * Donne la position actuelle de la grenouille
@@ -69,6 +87,13 @@ public class Frog implements IFrog {
 		return new Case(abs, ord);
 	}
 
+	
+	public void moveFromInput(int key) {
+		Direction whereToGo = controls.get(key);
+		if (whereToGo != null) {
+			move(controls.get(key));
+		}
+	}
 	/**
 	 * D�place la grenouille dans la direction donn�e et teste la fin de partie
 	 * 
@@ -88,6 +113,8 @@ public class Frog implements IFrog {
 			break;
 		case right:
 			m_position = limitedCase(m_position.absc + 1, m_position.ord);
+			break;
+		default:
 			break;
 		}
 	}

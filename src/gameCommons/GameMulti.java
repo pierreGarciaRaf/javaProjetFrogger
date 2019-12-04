@@ -1,27 +1,12 @@
 package gameCommons;
 
 import java.awt.Color;
-import java.util.Random;
 
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
-public class Game {
-	//variables qui évoluent pendant la partie.
-	public int time;
-	public final Random randomGen = new Random();
-	protected boolean gameFinished; 
-
-	// Caracteristique de la partie
-	public final int width;
-	public final int height;
-	public final int minSpeedInTimerLoops;
-	public final double defaultDensity;
-
-	// Lien aux objets utilis�s
-	protected IEnvironment environment;
-	private IFrog frog;
-	protected IFroggerGraphics graphic;
+public class GameMulti extends Game{
+	private Frogs frogs;
 
 	/**
 	 * 
@@ -33,14 +18,9 @@ public class Game {
 	 * @param defaultDensity      densite de voiture utilisee par defaut pour les
 	 *                            routes
 	 */
-	public Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
-		super();
-		this.graphic = graphic;
-		this.width = width;
-		this.height = height;
-		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
-		this.defaultDensity = defaultDensity;
-		this.gameFinished = false; 
+	public GameMulti(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
+		super(graphic,width,height,minSpeedInTimerLoop,defaultDensity);
+		frogs = new Frogs();
 
 	}
 
@@ -49,35 +29,27 @@ public class Game {
 	 * 
 	 * @param frog
 	 */
-	public void setFrog(IFrog frog) {
-		this.frog = frog;
+	public void addFrog(IFrog frog) {
+		this.frogs.add(frog);
+		for (IFrog frogNow:frogs) {
+			
+		}
 	}
 
-	/**
-	 * Lie l'objet environment a la partie
-	 * 
-	 * @param environment
-	 */
-	public void setEnvironment(IEnvironment environment) {
-		this.environment = environment;
-	}
 
-	/**
-	 * 
-	 * @return l'interface graphique
-	 */
-	public IFroggerGraphics getGraphic() {
-		return graphic;
-	}
+
 
 	public void moveBecauseOfWater() {
-		int hasToMove = environment.hasToMove(frog.getPosition());
-		if (hasToMove ==0) {
-			return;
+		for (IFrog frog : frogs) {
+			int hasToMove = super.environment.hasToMove(frog.getPosition());
+			System.out.println(frog + " at "+ frog.getPosition().absc);
+			if (hasToMove ==0) {
+				continue;
+			}
+			frog.move(hasToMove > 0 ?
+					Direction.right :
+					Direction.left);
 		}
-		frog.move(hasToMove > 0 ?
-				Direction.right :
-				Direction.left);
 	}
 	/**
 	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
@@ -86,7 +58,14 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		if (!environment.isSafe(frog.getPosition())) {
+		int sum = 0;
+		for (IFrog frog : frogs) {
+			if (!environment.isSafe(frog.getPosition())) {
+				
+				sum+=1;
+			}
+		}
+		if( sum == frogs.size()) {
 			System.out.println("YOU LOSE!");
 			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition(),time);
 			return true;
@@ -101,10 +80,12 @@ public class Game {
 	 * @return true si la partie est gagn�e
 	 */
 	public boolean testWin() {
-		if (environment.isWinningPosition(frog.getPosition())) {
-			System.out.println("GAME!");
-			graphic.endGameScreen("GAME!",time);
-			return true;
+		for (IFrog frog : frogs) {
+			if (environment.isWinningPosition(frog.getPosition())) {
+				System.out.println("GAME!");
+				graphic.endGameScreen("GAME!",time);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -112,9 +93,11 @@ public class Game {
 	// gere l'affichage
 	private void show() {
 		environment.showCar();
-		this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
+		for (IFrog frog : frogs) {
+			this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
+		}
 	}
-
+	
 	public int getScreenPosition() {
 		return environment.getScreenPosition();
 	}
@@ -123,6 +106,8 @@ public class Game {
 	 */
 	public void update() {
 		if (!gameFinished) {
+			
+
 			moveBecauseOfWater();
 			environment.update();
 
@@ -131,10 +116,7 @@ public class Game {
 
 			gameFinished = testLose();
 			gameFinished = testWin() || gameFinished;
+			
 			}
 		}
-
-	public void addFrog(IFrog frog2) {
-		setFrog(frog2);
-	}
 }

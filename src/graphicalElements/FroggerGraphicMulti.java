@@ -35,6 +35,7 @@ public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, Key
 		frame.pack();
 		frame.setVisible(true);
 		frame.addKeyListener(this);
+		frogs = new ArrayList<IFrog>(0);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -52,33 +53,8 @@ public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, Key
 	}
 
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-			frog.move(Direction.up);
-			break;
-		case KeyEvent.VK_Z:
-			frog2.move(Direction.up);
-			break;
-		
-		case KeyEvent.VK_DOWN:
-			frog.move(Direction.down);
-			break;
-		case KeyEvent.VK_S:
-			frog2.move(Direction.down);
-			break;
-			
-		case KeyEvent.VK_LEFT:
-			frog.move(Direction.left);
-			break;
-		case KeyEvent.VK_Q:
-			frog2.move(Direction.left);
-			break;
-			
-		case KeyEvent.VK_RIGHT:
-			frog.move(Direction.right);
-			break;
-		case KeyEvent.VK_D:
-			frog2.move(Direction.right);
+		for (IFrog frog : frogs) {
+			frog.moveFromInput(e.getKeyCode());
 		}
 	}
 
@@ -91,8 +67,8 @@ public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, Key
 		this.elementsToDisplay.add(e);
 	}
 
-	public void setFrogs(ArrayList<IFrog> frogs) {
-		this. = frogs;
+	public void setFrog(IFrog frog) {
+		this.frogs.add(frog);
 	}
 	
 	public void endGameScreen(String s, int time_ms) {

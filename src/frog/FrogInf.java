@@ -1,10 +1,16 @@
 package frog;
 
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import gameCommons.Case;
 import gameCommons.Direction;
 import gameCommons.Game;
 
 public class FrogInf extends Frog {
+	public FrogInf(Game game, Case position, Direction direction,ArrayList<Integer> controls) {
+		super(game,position, direction, controls);
+	}
 
 	public FrogInf(Game game, Case position, Direction direction) {
 		super(game, position, direction);
@@ -31,6 +37,14 @@ public class FrogInf extends Frog {
 		return new Case(abs, ord);
 	}
 
+	
+	public void moveFromInput(int key) {
+		Direction whereToGo = controls.get(key);
+		if (whereToGo != null) {
+			move(super.controls.get(key));
+		}
+	}
+	
 	public void move(Direction key) {
 		switch (key) {
 		case up:

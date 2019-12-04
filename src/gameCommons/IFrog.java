@@ -1,5 +1,7 @@
 package gameCommons;
 
+import java.awt.event.KeyEvent;
+
 public interface IFrog {
 	
 	public Case getOnScreenPosition();
@@ -15,6 +17,8 @@ public interface IFrog {
 	 * @return
 	 */
 	public Direction getDirection();
+	
+	public void moveFromInput(int key);
 	
 	/**
 	 * D�place la grenouille dans la direction donn�e et teste la fin de partie
