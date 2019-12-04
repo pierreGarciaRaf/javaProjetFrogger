@@ -10,16 +10,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListener {
+public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, KeyListener {
+
 
 	private ArrayList<Element> elementsToDisplay;
 	private int pixelByCase = 16;
 	private int width;
 	private int height;
-	private IFrog frog;
+	private ArrayList<IFrog> frogs;
 	private JFrame frame;
 
-	public FroggerGraphic(int width, int height) {
+	public FroggerGraphicMulti(int width, int height) {
 		this.width = width;
 		this.height = height;
 		elementsToDisplay = new ArrayList<Element>();
@@ -53,23 +54,31 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-		case KeyEvent.VK_Z:
 			frog.move(Direction.up);
 			break;
+		case KeyEvent.VK_Z:
+			frog2.move(Direction.up);
+			break;
 		
-		case KeyEvent.VK_S:
 		case KeyEvent.VK_DOWN:
 			frog.move(Direction.down);
 			break;
+		case KeyEvent.VK_S:
+			frog2.move(Direction.down);
+			break;
+			
 		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_Q:
 			frog.move(Direction.left);
 			break;
-		
+		case KeyEvent.VK_Q:
+			frog2.move(Direction.left);
+			break;
+			
 		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_D:
 			frog.move(Direction.right);
 			break;
+		case KeyEvent.VK_D:
+			frog2.move(Direction.right);
 		}
 	}
 
@@ -82,10 +91,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		this.elementsToDisplay.add(e);
 	}
 
-	public void setFrog(IFrog frog) {
-		this.frog = frog;
+	public void setFrogs(ArrayList<IFrog> frogs) {
+		this. = frogs;
 	}
-
+	
 	public void endGameScreen(String s, int time_ms) {
 		frame.remove(this);
 		JLabel label = new JLabel(s + "//time : " +time_ms/60000 +"m"+ time_ms%60000/1000+"s"+time_ms%1000);

@@ -7,7 +7,8 @@ import gameCommons.Game;
 
 public class Lane {
 	protected int timer;
-
+	protected int phase = 100;
+	
 	protected Game game;
 	protected int ord;
 	protected int speed;
@@ -16,17 +17,42 @@ public class Lane {
 	protected double density;
 
 	// TODO : Constructeur(s)
-	public Lane(Game game, int ord, int speed, boolean leftToRight, double density) {
+	public Lane(Game game, int ord, int speed,int phase, boolean leftToRight, double density) {
 		this.game = game;
 		this.ord = ord;
 		this.speed = speed;
+		this.phase = phase;
 		this.leftToRight = leftToRight;
 		this.density = density;
 	}
 
+	public Lane(Game game, int ord, int speed, boolean leftToRight, double density) {
+		this(game,ord,speed,100,leftToRight,density);
+	}
+
 	public void update() {
+		this.timer += this.speed;
+		
+		if (this.timer >= phase) {
+			this.timer %= phase;
+			int increaser = -1;
+			if (this.leftToRight) {
+				increaser = 1;
+			}
+			for (Vehicle vehicle : this.vehicles) {
+				vehicle.updateAndMoveTo(new Case(vehicle.getCase().absc + increaser, vehicle.getCase().ord));
+			}
+		}
+		ArrayList<Vehicle> buffer = new ArrayList<Vehicle>(this.vehicles);
+		for (Vehicle vehicle : buffer) {
+			if (vehicle.getCase().absc < -5 || vehicle.getCase().absc > this.game.width + 5) {
+				this.vehicles.remove(vehicle);
+			}
+		}
 
 	}
+
+	
 
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {

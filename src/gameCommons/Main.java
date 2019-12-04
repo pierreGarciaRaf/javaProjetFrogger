@@ -16,8 +16,14 @@ import frog.FrogInf;
 public class Main {
 	public static void main(String[] args) {
 		int gameID = 0;
+		int numberOfPlayers = 0;
 		Scanner scan = new Scanner(System.in);
-		while (!(gameID == 1 || gameID == 2)) {
+		while (!(gameID >= 1 && gameID <= 2)) {
+			gameID = scan.nextInt();
+		}
+		scan.close();
+		scan = new Scanner(System.in);
+		while (!(gameID >= 1 && gameID <= 2)) {
 			gameID = scan.nextInt();
 		}
 		scan.close();
@@ -27,19 +33,24 @@ public class Main {
 		int height = 20*gameID;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
-		double defaultDensity = 0.2;
+		double defaultDensity = 0.05;
 
 		IFroggerGraphics graphic = new FroggerGraphic(width, height);
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 
 		IFrog frog = null;
+		IFrog frog2 = null;
 		IEnvironment env = null;
 
 		switch (gameID) {
+		case 4:
+			frog2 = new FrogInf(game);
 		case 2:
 			frog = new FrogInf(game);
 			env = new EnvInf(game, frog);
 			break;
+		case 3:
+			frog2 = new Frog(game);
 		case 1:
 			frog = new Frog(game);
 			env = new Environment(game);

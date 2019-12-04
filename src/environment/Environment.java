@@ -9,8 +9,8 @@ import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
 
-	private final int MAXSPEED = 4;
-	
+	private final int MAXSPEED = 40;
+	private final int MINSPEED = 25;
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
 	
@@ -24,23 +24,23 @@ public class Environment implements IEnvironment {
 		Random rand = new Random();
 		int ord = 1;
 		for (; ord < game.height/4 - 1; ord++) {
-			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 		lanes.add(new Lane(game, ord, 1, true, 0));
 		ord+=1;
-		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		ord+=1;
 		for (; ord < 3*game.height/4 - 2; ord++) {
-			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 		lanes.add(new Lane(game, ord, 1, true, 0));
 		ord+=1;
-		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		ord+=1;
-		lanes.add(new River(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		ord+=1;
 		for (; ord < game.height; ord++) {
-			lanes.add(new Road(game, ord, rand.nextInt(MAXSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
 		}
 
 		lanes.add(new Road(game, game.height - 1, 1, true, 0));

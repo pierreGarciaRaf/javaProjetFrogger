@@ -10,7 +10,8 @@ import gameCommons.IFrog;
 
 public class EnvInf implements IEnvironment {
 
-	private final int MAXSPEED = 3;
+	private final int MAXSPEED = 40;
+	private final int MINSPEED = 25;
 	private int screenPosition;
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
@@ -44,7 +45,9 @@ public class EnvInf implements IEnvironment {
 	public int hasToMove(Case c) {
 		return lanes.get(c.ord).hasToMove(c);
 	}
-
+	private int generateSpeed() {
+		return this.rand.nextInt(MAXSPEED-MINSPEED) +MINSPEED + 1;
+	}
 	
 	private void addAndUpdateGenerator(int speed, int ord) {
 		switch(genLanes.generate()) {
@@ -52,11 +55,11 @@ public class EnvInf implements IEnvironment {
 				lanes.add(new Lane(this.game, ord, 0, false,0));
 				break;
 			case 'w':
-				lanes.add(new River(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
+				lanes.add(new River(this.game, ord, generateSpeed(), this.rand.nextBoolean(),
 						this.game.defaultDensity));
 				break;
 			case 'r':
-				lanes.add(new Road(this.game, ord, this.rand.nextInt(MAXSPEED) + 1, this.rand.nextBoolean(),
+				lanes.add(new Road(this.game, ord, generateSpeed(), this.rand.nextBoolean(),
 						this.game.defaultDensity));
 				break;
 

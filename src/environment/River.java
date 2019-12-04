@@ -9,12 +9,14 @@ import graphicalElements.Element;
 
 public class River extends Lane {
 
-	
+	private boolean hasToMove = false;
+
 	public River(Game game, int ord, int speed, boolean leftToRight, double density) {
 		super(game, ord, speed, leftToRight, density);
 		for (int time = 0; time < 300; time += 1) {
 			this.update();
 		}
+		hasToMove = false;
 	}
 	
 	private void addToGraphics() {
@@ -24,30 +26,20 @@ public class River extends Lane {
 	}
 	
 	public void update() {
-		this.timer += 1;
-		
-		if (this.timer == this.speed) {
-			this.timer = 0;
-			int increaser = -1;
-			if (this.leftToRight) {
-				increaser = 1;
-			}
-			for (Vehicle vehicle : this.vehicles) {
-				vehicle.updateAndMoveTo(new Case(vehicle.getCase().absc + increaser, vehicle.getCase().ord));
-			}
+		this.mayAddLog();
+		super.update();
+		if (this.timer >= phase -speed) {
+			hasToMove = true;
+		}
+		else {
+			hasToMove = false;
 		}
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
-		this.mayAddLog();
+		
 
 		// Les voitures doivent etre ajoutes a l interface graphique meme quand
 		// elle ne bougent pas
-		ArrayList<Vehicle> buffer = new ArrayList<Vehicle>(this.vehicles);
-		for (Vehicle vehicle : buffer) {
-			if (vehicle.getCase().absc < -5 || vehicle.getCase().absc > this.game.width + 5) {
-				this.vehicles.remove(vehicle);
-			}
-		}
 	}
 	
 	public boolean isSafe(Case c) {
@@ -55,8 +47,10 @@ public class River extends Lane {
 	}
 	
 	public int hasToMove(Case c) {
-		if (timer == this.speed-1) {
+		if (hasToMove) {
+			this.hasToMove = false;
 			return super.leftToRight ? 1 : -1;
+			
 		}
 		else {
 			return 0;
