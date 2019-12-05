@@ -23,6 +23,11 @@ public class Game {
 	private IFrog frog;
 	protected IFroggerGraphics graphic;
 
+	
+	public Case getLastFrogPos() {
+		return frog.getPosition();
+	}
+
 	/**
 	 * 
 	 * @param graphic             l'interface graphique

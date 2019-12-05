@@ -7,7 +7,10 @@ import graphicalElements.IFroggerGraphics;
 
 public class GameMulti extends Game{
 	private Frogs frogs;
-
+	
+	public Case getLastFrogPos() {
+		return frogs.lastPos();
+	}
 	/**
 	 * 
 	 * @param graphic             l'interface graphique
@@ -31,9 +34,6 @@ public class GameMulti extends Game{
 	 */
 	public void addFrog(IFrog frog) {
 		this.frogs.add(frog);
-		for (IFrog frogNow:frogs) {
-			
-		}
 	}
 
 
@@ -42,7 +42,7 @@ public class GameMulti extends Game{
 	public void moveBecauseOfWater() {
 		for (IFrog frog : frogs) {
 			int hasToMove = super.environment.hasToMove(frog.getPosition());
-			System.out.println(frog + " at "+ frog.getPosition().absc);
+			System.out.println(frog.getPosition().ord);
 			if (hasToMove ==0) {
 				continue;
 			}
@@ -58,14 +58,13 @@ public class GameMulti extends Game{
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		int sum = 0;
 		for (IFrog frog : frogs) {
 			if (!environment.isSafe(frog.getPosition())) {
-				
-				sum+=1;
+				frogs.remove(frog);
+				break;
 			}
 		}
-		if( sum == frogs.size()) {
+		if(frogs.size()==0) {
 			System.out.println("YOU LOSE!");
 			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition(),time);
 			return true;

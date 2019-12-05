@@ -95,7 +95,7 @@ public class Main {
 				env = new Environment(game);
 				break;
 			case 2:
-				env = new EnvInf(game,frogs);
+				env = new EnvInf(game);
 				break;
 		}
 

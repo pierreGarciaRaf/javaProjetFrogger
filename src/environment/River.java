@@ -47,7 +47,6 @@ public class River extends Lane {
 	
 	public int hasToMove(Case c) {
 		if (hasToMove) {
-			this.hasToMove = false;
 			return super.leftToRight ? 1 : -1;
 			
 		}

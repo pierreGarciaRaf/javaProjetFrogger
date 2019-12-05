@@ -16,15 +16,14 @@ public class EnvInf implements IEnvironment {
 	private int screenPosition;
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
-	private Frogs frogs;
+
 	Random rand = new Random();
 	GeneratorState genLanes;
 
-	public EnvInf(Game game, Frogs frogs) {
+	public EnvInf(Game game) {
 		screenPosition = 0;
 		this.game = game;
-		this.frogs = frogs;
-		this.genLanes  = new GeneratorState(10,0.4f);
+		this.genLanes  = new GeneratorState(6,0.4f);
 		this.lanes = new ArrayList<Lane>(0);
 		lanes.add(new Road(this.game, 0, 1, true, 0));
 		lanes.add(new Road(this.game, 1, 1, true, 0));
@@ -45,7 +44,6 @@ public class EnvInf implements IEnvironment {
 	}
 	
 	public int hasToMove(Case c) {
-		System.out.println(c.absc+"; "+c.ord);
 		return lanes.get(c.ord).hasToMove(c);
 	}
 	private int generateSpeed() {
@@ -72,7 +70,7 @@ public class EnvInf implements IEnvironment {
 	
 	@Override
 	public void update() {
-		this.screenPosition = frogs.lastPos().ord - 1;
+		this.screenPosition = game.getLastFrogPos().ord - 1;
 		int loadedStart = this.screenPosition;
 		int loadedEnd = loadedStart + this.game.height;
 
