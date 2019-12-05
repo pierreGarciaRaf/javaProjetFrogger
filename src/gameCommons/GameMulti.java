@@ -42,7 +42,6 @@ public class GameMulti extends Game{
 	public void moveBecauseOfWater() {
 		for (IFrog frog : frogs) {
 			int hasToMove = super.environment.hasToMove(frog.getPosition());
-			System.out.println(frog.getPosition().ord);
 			if (hasToMove ==0) {
 				continue;
 			}

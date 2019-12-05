@@ -42,7 +42,6 @@ public class Main {
 		controlFrog3.add(KeyEvent.VK_O);
 		controlFrog3.add(KeyEvent.VK_M);
 		controlFrog3.add(KeyEvent.VK_L);
-
 		controls.add(controlFrog3);
 	}
 	
@@ -51,9 +50,11 @@ public class Main {
 		int gameID = 0;
 		int numberOfPlayers = 0;
 		Scanner scan = new Scanner(System.in);
+		System.out.println("chose your game-mode (1 for finite, 2 for endless) : ");
 		while (!(gameID >= 1 && gameID <= 2)) {
 			gameID = scan.nextInt();
 		}
+		System.out.println("chose the number of players (from 1 to 3) : ");
 		while (!(numberOfPlayers >= 1 && numberOfPlayers <= 3)) {
 			numberOfPlayers = scan.nextInt();
 		}
@@ -84,10 +85,6 @@ public class Main {
 			}
 			graphic.setFrog(frogs.get(playerID));
 			game.addFrog(frogs.get(playerID));
-			for (IFrog frog : frogs) {
-				System.out.println("frog : "+ frog+"; case : "+ frog.getPosition()+"; absc : "+
-						frog.getPosition().absc);
-			}
 
 		}
 		switch (gameID) {
