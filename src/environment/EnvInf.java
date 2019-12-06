@@ -18,6 +18,11 @@ public class EnvInf implements IEnvironment {
 	Random rand = new Random();
 	GeneratorState genLanes;
 
+	/*
+	 * class constructor
+	 * 
+	 * @param game
+	 */
 	public EnvInf(Game game) {
 		screenPosition = 0;
 		this.game = game;
@@ -31,24 +36,48 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
-	@Override
+	/*
+	 * test if a position is safe
+	 * 
+	 * @param c
+	 */
 	public boolean isSafe(Case c) {
 		return lanes.get(c.ord).isSafe(c);
 	}
 
-	@Override
+	/*
+	 * test if a position is a wining position. Since the game is infinite, always
+	 * return false
+	 * 
+	 * @param c
+	 */
 	public boolean isWinningPosition(Case c) {
 		return false;
 	}
 
+	/*
+	 * check if an object at this position must move
+	 * 
+	 * @param c
+	 */
 	public int hasToMove(Case c) {
 		return lanes.get(c.ord).hasToMove(c);
 	}
 
+	/*
+	 * give a random int in the speed interval
+	 */
 	private int generateSpeed() {
 		return this.rand.nextInt(MAXSPEED - MINSPEED) + MINSPEED + 1;
 	}
 
+	/*
+	 * add a lane using the generator, may be any type of lane
+	 * 
+	 * @param speed the speed of objects in the lane
+	 * 
+	 * @param ord ordinate of the lane
+	 */
 	private void addAndUpdateGenerator(int speed, int ord) {
 		switch (genLanes.generate()) {
 		case 'e':
@@ -65,7 +94,9 @@ public class EnvInf implements IEnvironment {
 		genLanes.update(speed);
 	}
 
-	@Override
+	/*
+	 * update evry lanes
+	 */
 	public void update() {
 		this.screenPosition = game.getLastFrogPos().ord - 1;
 		int loadedStart = this.screenPosition;
@@ -82,7 +113,9 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
-	@Override
+	/*
+	 * show evry cars and logs on screen
+	 */
 	public void showCar() {
 		int loadedStart = this.screenPosition;
 		int loadedEnd = loadedStart + this.game.height;
@@ -91,6 +124,9 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
+	/*
+	 * return the postition of the screen
+	 */
 	public int getScreenPosition() {
 		return screenPosition;
 	}

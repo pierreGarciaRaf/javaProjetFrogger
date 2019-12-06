@@ -22,7 +22,7 @@ public class Car extends Vehicle {
 	}
 
 	/*
-	 * Show the car on the screen at it own
+	 * Show the car on the screen at its position
 	 * 
 	 * @param ord the ordinate of the car on the screen
 	 */
