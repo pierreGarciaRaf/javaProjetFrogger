@@ -18,10 +18,10 @@ public class EnvInf implements IEnvironment {
 	Random rand = new Random();
 	GeneratorState genLanes;
 
-	/*
+	/**
 	 * class constructor
 	 * 
-	 * @param game
+	 * @param game a reference to the game
 	 */
 	public EnvInf(Game game) {
 		screenPosition = 0;
@@ -36,26 +36,30 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
-	/*
-	 * test if a position is safe
+	/**
+	 * test if a case is safe
 	 * 
-	 * @param c
+	 * @param c the case
+	 * 
+	 * @return true if the case is safe
 	 */
 	public boolean isSafe(Case c) {
 		return lanes.get(c.ord).isSafe(c);
 	}
 
-	/*
+	/**
 	 * test if a position is a wining position. Since the game is infinite, always
 	 * return false
 	 * 
 	 * @param c
+	 * 
+	 * @return false
 	 */
 	public boolean isWinningPosition(Case c) {
 		return false;
 	}
 
-	/*
+	/**
 	 * check if an object at this position must move
 	 * 
 	 * @param c
@@ -64,19 +68,19 @@ public class EnvInf implements IEnvironment {
 		return lanes.get(c.ord).hasToMove(c);
 	}
 
-	/*
+	/**
 	 * give a random int in the speed interval
 	 */
 	private int generateSpeed() {
 		return this.rand.nextInt(MAXSPEED - MINSPEED) + MINSPEED + 1;
 	}
 
-	/*
+	/**
 	 * add a lane using the generator, may be any type of lane
 	 * 
 	 * @param speed the speed of objects in the lane
 	 * 
-	 * @param ord ordinate of the lane
+	 * @param ord   ordinate of the lane
 	 */
 	private void addAndUpdateGenerator(int speed, int ord) {
 		switch (genLanes.generate()) {
@@ -94,7 +98,7 @@ public class EnvInf implements IEnvironment {
 		genLanes.update(speed);
 	}
 
-	/*
+	/**
 	 * update every lanes
 	 */
 	public void update() {
@@ -113,7 +117,7 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
-	/*
+	/**
 	 * show every cars and logs on screen
 	 */
 	public void showCar() {
@@ -124,7 +128,7 @@ public class EnvInf implements IEnvironment {
 		}
 	}
 
-	/*
+	/**
 	 * return the postition of the screen
 	 */
 	public int getScreenPosition() {

@@ -16,20 +16,20 @@ public class Lane {
 	protected boolean leftToRight;
 	protected double density;
 
-	/*
+	/**
 	 * class constructor
 	 * 
-	 * @param game
+	 * @param game        a reference to the game
 	 * 
-	 * @param ord
+	 * @param ord         the ordinate of the lane
 	 * 
-	 * @param speed
+	 * @param speed       the speed of object on the lane
 	 * 
-	 * @param phase
+	 * @param phase       the lenght of a phase
 	 * 
-	 * @param leftToRight
+	 * @param leftToRight direction of vehicules on the lane
 	 * 
-	 * @param density
+	 * @param density     density of vehicles on the lane
 	 */
 	public Lane(Game game, int ord, int speed, int phase, boolean leftToRight, double density) {
 		this.game = game;
@@ -40,7 +40,7 @@ public class Lane {
 		this.density = density;
 	}
 
-	/*
+	/**
 	 * Overloded class constructor
 	 * 
 	 * @param game
@@ -57,8 +57,8 @@ public class Lane {
 		this(game, ord, speed, 100, leftToRight, density);
 	}
 
-	/*
-	 * 
+	/**
+	 * update evry vehicules on the lane and delete those off screen
 	 */
 	public void update() {
 		this.timer += this.speed;
@@ -82,10 +82,12 @@ public class Lane {
 
 	}
 
-	/*
+	/**
 	 * Check if the case is safe
 	 * 
-	 * @param c
+	 * @param c must be on the lane
+	 * 
+	 * @return true if the case is safe
 	 */
 	public boolean isSafe(Case c) {
 		if (c.ord != ord) {
@@ -103,8 +105,8 @@ public class Lane {
 		return true;
 	}
 
-	/*
-	 * 
+	/**
+	 * return a case on the first position of the lane according to its direction
 	 */
 	protected Case getFirstCase() {
 		if (leftToRight) {
@@ -113,8 +115,9 @@ public class Lane {
 			return new Case(game.width - 1, ord);
 	}
 
-	/*
-	 * 
+	/**
+	 * return a case out of the screen just before the first position of the lane
+	 * according to its direction
 	 */
 	Case getBeforeFirstCase() {
 		if (leftToRight) {
@@ -123,7 +126,9 @@ public class Lane {
 			return new Case(game.width, ord);
 	}
 
-	/*
+	/**
+	 * show evry vehicule on the lane
+	 * 
 	 * @param ord
 	 */
 	public void show(int ord) {
@@ -132,15 +137,17 @@ public class Lane {
 		}
 	}
 
-	/*
-	 * @param c
+	/**
+	 * check if an object placed on the lane has to move for some reason
+	 * 
+	 * @param c have to be on the lane
 	 */
 	public int hasToMove(Case c) {
 		return 0;
 	}
 
-	/*
-	 * 
+	/**
+	 * overloded fonction
 	 */
 	public void show() {
 		show(this.ord);
