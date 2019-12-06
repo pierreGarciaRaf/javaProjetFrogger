@@ -95,7 +95,7 @@ public class EnvInf implements IEnvironment {
 	}
 
 	/*
-	 * update evry lanes
+	 * update every lanes
 	 */
 	public void update() {
 		this.screenPosition = game.getLastFrogPos().ord - 1;
@@ -114,7 +114,7 @@ public class EnvInf implements IEnvironment {
 	}
 
 	/*
-	 * show evry cars and logs on screen
+	 * show every cars and logs on screen
 	 */
 	public void showCar() {
 		int loadedStart = this.screenPosition;
