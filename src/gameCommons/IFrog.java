@@ -17,7 +17,11 @@ public interface IFrog {
 	 * @return
 	 */
 	public Direction getDirection();
-
+	
+	/**
+	 * moves the frog using it's personnal inputs
+	 * @param key used.
+	 */
 	public void moveFromInput(int key);
 
 	/**
