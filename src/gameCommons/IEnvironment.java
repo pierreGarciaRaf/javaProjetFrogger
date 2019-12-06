@@ -16,7 +16,12 @@ public interface IEnvironment {
 	 * @return vrai s'il n'y a pas danger
 	 */
 	public boolean isSafe(Case c);
-
+	
+	/**
+	 * Tests if a case has to move, if the frog on it needs to move sideways.
+	 * @param c case to test
+	 * @return the distance the frog has to move horizontally
+	 */
 	public int hasToMove(Case c);
 
 	/**
@@ -35,7 +40,6 @@ public interface IEnvironment {
 	/**
 	 * Affiche les voitures
 	 */
-
 	public void showCar();
 
 }
