@@ -17,7 +17,7 @@ import frog.FrogInf;
 
 public class Main {
 	public static ArrayList<ArrayList<Integer>> controls;
-
+	//prepare les contrôles pour plusieurs joueurs gère 3 joueurs, peu être modifié simplement. 
 	public static void setupControls() {
 		controls = new ArrayList<ArrayList<Integer>>(0);
 		ArrayList<Integer> controlFrog1 = new ArrayList<Integer>(0);
@@ -48,11 +48,13 @@ public class Main {
 		int gameID = 0;
 		int numberOfPlayers = 0;
 		Scanner scan = new Scanner(System.in);
+		//choix du mode de jeu.
 		System.out.println("chose your game-mode (1 for finite, 2 for endless) : ");
 		while (!(gameID >= 1 && gameID <= 2)) {
 			gameID = scan.nextInt();
 		}
-		System.out.println("chose the number of players (from 1 to 3) : ");
+		//choix du nombre de joueurs.
+		System.out.println("chose the number of players (from 1 to "+controls.size()+") : ");
 		while (!(numberOfPlayers >= 1 && numberOfPlayers <= 3)) {
 			numberOfPlayers = scan.nextInt();
 		}
@@ -67,9 +69,10 @@ public class Main {
 
 		IFroggerGraphics graphic = new FroggerGraphicMulti(width, height);
 		Game game = new GameMulti(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
-
+		//choix du mode 
 		IEnvironment env = null;
 		Frogs frogs = new Frogs();
+		//setup des grenouilles en fonction du choix du joueur.
 		for (int playerID = 0; playerID < numberOfPlayers; playerID += 1) {
 			switch (gameID) {
 			case 2:
@@ -85,6 +88,8 @@ public class Main {
 			game.addFrog(frogs.get(playerID));
 
 		}
+		
+		//setup de l'environnement
 		switch (gameID) {
 		case 1:
 			env = new Environment(game);
