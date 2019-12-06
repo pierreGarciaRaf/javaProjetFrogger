@@ -16,6 +16,14 @@ public class Frog implements IFrog {
 	protected Direction m_direction;
 	protected HashMap<Integer, Direction> controls;
 
+	/**
+	 * class constructor
+	 * 
+	 * @param game      a reference to the game
+	 * @param position  the starting position of the frog
+	 * @param direction
+	 * @param keys      the keyboard keys that control the frog
+	 */
 	public Frog(Game game, Case position, Direction direction, ArrayList<Integer> keys) {
 		m_game = game;
 		m_position = position;
@@ -27,6 +35,11 @@ public class Frog implements IFrog {
 		controls.put(keys.get(3), Direction.down);
 	}
 
+	/**
+	 * default control
+	 * 
+	 * @return
+	 */
 	private static ArrayList<Integer> basicControls() {
 		ArrayList<Integer> controls = new ArrayList<Integer>(0);
 		controls.add(KeyEvent.VK_LEFT);
@@ -36,27 +49,37 @@ public class Frog implements IFrog {
 		return controls;
 	}
 
+	/**
+	 * overloded class constructor
+	 * 
+	 * @param game
+	 * @param position
+	 * @param direction
+	 */
 	public Frog(Game game, Case position, Direction direction) {
 		this(game, position, direction, basicControls());
 	}
 
+	/**
+	 * overloaded class constructor
+	 * 
+	 * @param game
+	 */
 	public Frog(Game game) {
 		this(game, new Case(game.width / 2, 0), Direction.up);
 	}
 
 	/**
-	 * Donne la position actuelle de la grenouille
+	 * give the curent position of the frog
 	 * 
-	 * @return
+	 * @return a case
 	 */
 	public Case getPosition() {
 		return m_position;
 	}
 
 	/**
-	 * Donne la direction de la grenouille, c'est � dire de son dernier mouvement
-	 * 
-	 * @return
+	 * @return the last movement of the frog
 	 */
 	public Direction getDirection() {
 		return m_direction;
@@ -87,6 +110,11 @@ public class Frog implements IFrog {
 		return new Case(abs, ord);
 	}
 
+	/**
+	 * move the frog in the direction binded on the key
+	 * 
+	 * @param a keyboard key
+	 */
 	public void moveFromInput(int key) {
 		Direction whereToGo = controls.get(key);
 		if (whereToGo != null) {
@@ -95,7 +123,7 @@ public class Frog implements IFrog {
 	}
 
 	/**
-	 * D�place la grenouille dans la direction donn�e et teste la fin de partie
+	 * try to move the frog in the given direction
 	 * 
 	 * @param key
 	 */
@@ -119,7 +147,9 @@ public class Frog implements IFrog {
 		}
 	}
 
-	@Override
+	/**
+	 * @return the current position
+	 */
 	public Case getOnScreenPosition() {
 		return m_position;
 	}
