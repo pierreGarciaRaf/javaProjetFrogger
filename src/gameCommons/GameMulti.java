@@ -48,8 +48,8 @@ public class GameMulti extends Game {
 	}
 
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
+	 * le cas
 	 * 
 	 * @return true si le partie est perdue
 	 */
@@ -69,8 +69,8 @@ public class GameMulti extends Game {
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel est
+	 * le cas
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
