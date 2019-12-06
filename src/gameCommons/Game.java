@@ -74,6 +74,9 @@ public class Game {
 		return graphic;
 	}
 
+	/**
+	 * Moves the frog if needed (if it's on a river).
+	 */
 	public void moveBecauseOfWater() {
 		int hasToMove = environment.hasToMove(frog.getPosition());
 		if (hasToMove == 0) {
@@ -83,7 +86,7 @@ public class Game {
 	}
 
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
+	 * Teste si la partie est perdue et lance un écran de fin approprié si tel est
 	 * le cas
 	 * 
 	 * @return true si le partie est perdue
@@ -117,8 +120,9 @@ public class Game {
 		environment.showCar();
 		this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
 	}
-
-	public int getScreenPosition() {
+	
+	//Gives the final score which is the final ord.
+	public int getScore() {
 		return environment.getScreenPosition();
 	}
 
@@ -137,7 +141,7 @@ public class Game {
 			gameFinished = testWin() || gameFinished;
 		}
 	}
-
+	//Same thing as setFrog in this class.
 	public void addFrog(IFrog frog2) {
 		setFrog(frog2);
 	}
