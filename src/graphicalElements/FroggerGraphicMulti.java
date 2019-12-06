@@ -40,7 +40,7 @@ public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, Key
 
 	/**
 	 * draws a component on
-	 * @param g the canvas to be drawns on.
+	 * @param g the canvas to be drawn on.
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
