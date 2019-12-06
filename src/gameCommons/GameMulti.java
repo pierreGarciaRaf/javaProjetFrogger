@@ -36,7 +36,9 @@ public class GameMulti extends Game {
 	public void addFrog(IFrog frog) {
 		this.frogs.add(frog);
 	}
-
+	/**
+	 * moves all frogs that are on rivers.
+	 */
 	public void moveBecauseOfWater() {
 		for (IFrog frog : frogs) {
 			int hasToMove = super.environment.hasToMove(frog.getPosition());
@@ -93,9 +95,6 @@ public class GameMulti extends Game {
 		}
 	}
 
-	public int getScreenPosition() {
-		return environment.getScreenPosition();
-	}
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.

@@ -121,8 +121,8 @@ public class Game {
 		this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
 	}
 	
-	//Gives the final score which is the final ord.
-	public int getScore() {
+	//Gives the screen position from environment.
+	public int getScreenPosition() {
 		return environment.getScreenPosition();
 	}
 
