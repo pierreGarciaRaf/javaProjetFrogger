@@ -1,3 +1,4 @@
+
 package graphicalElements;
 
 import java.awt.*;
@@ -16,5 +17,4 @@ public class Element extends Case {
 		super(c.absc, c.ord);
 		this.color = color;
 	}
-
 }

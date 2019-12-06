@@ -15,7 +15,11 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	private int height;
 	private IFrog frog;
 	private JFrame frame;
-
+	/**
+	 * generates a graphic panel.
+	 * @param width horizontal size.
+	 * @param height vertical size.
+	 */
 	public FroggerGraphic(int width, int height) {
 		this.height = height;
 		elementsToDisplay = new ArrayList<Element>();
@@ -31,7 +35,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		frame.setVisible(true);
 		frame.addKeyListener(this);
 	}
-
+	/**
+	 * draws a component on
+	 * @param g the canvas to be drawns on.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (Element e : elementsToDisplay) {
@@ -45,7 +52,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	public void keyReleased(KeyEvent e) {
 	}
-
+	/**
+	 * Moves the frog when key is pressed.
+	 * Called by the engine.
+	 */
 	public void keyPressed(KeyEvent e) {
 
 		frog.moveFromInput(e.getKeyCode());
@@ -53,19 +63,31 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	}
 
+	/**
+	 * resets the predrawn list
+	 */
 	public void clear() {
 		this.elementsToDisplay.clear();
 	}
-
+	/**
+	 * adds an Element
+	 * @param element to add to pre-drawn list.
+	 */
 	public void add(Element e) {
 
 		this.elementsToDisplay.add(e);
 	}
-
+	/**
+	 * allows the frog to receive inputs.
+	 */
 	public void setFrog(IFrog frog) {
 		this.frog = frog;
 	}
-
+	/**
+	 * display and endGameScreen. 
+	 * @param s : text to display (has to contain score)
+	 * @param time_ms : the time to display from ms to min:s.
+	 */
 	public void endGameScreen(String s, int time_ms) {
 		frame.remove(this);
 		JLabel label = new JLabel(
