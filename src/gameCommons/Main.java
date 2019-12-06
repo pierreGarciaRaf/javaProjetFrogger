@@ -11,14 +11,13 @@ import javax.swing.Timer;
 import environment.EnvInf;
 import environment.Environment;
 import frog.Frog;
-import graphicalElements.FroggerGraphic;
 import graphicalElements.FroggerGraphicMulti;
 import graphicalElements.IFroggerGraphics;
 import frog.FrogInf;
 
 public class Main {
 	public static ArrayList<ArrayList<Integer>> controls;
-	
+
 	public static void setupControls() {
 		controls = new ArrayList<ArrayList<Integer>>(0);
 		ArrayList<Integer> controlFrog1 = new ArrayList<Integer>(0);
@@ -27,7 +26,7 @@ public class Main {
 		controlFrog1.add(KeyEvent.VK_RIGHT);
 		controlFrog1.add(KeyEvent.VK_DOWN);
 		controls.add(controlFrog1);
-		
+
 		ArrayList<Integer> controlFrog2 = new ArrayList<Integer>(0);
 
 		controlFrog2.add(KeyEvent.VK_Q);
@@ -35,7 +34,6 @@ public class Main {
 		controlFrog2.add(KeyEvent.VK_D);
 		controlFrog2.add(KeyEvent.VK_S);
 		controls.add(controlFrog2);
-		
 
 		ArrayList<Integer> controlFrog3 = new ArrayList<Integer>(0);
 		controlFrog3.add(KeyEvent.VK_K);
@@ -44,7 +42,7 @@ public class Main {
 		controlFrog3.add(KeyEvent.VK_L);
 		controls.add(controlFrog3);
 	}
-	
+
 	public static void main(String[] args) {
 		setupControls();
 		int gameID = 0;
@@ -62,25 +60,25 @@ public class Main {
 
 		// Caract�ristiques du jeu
 		int width = 26;
-		int height = 20*gameID;
+		int height = 20 * gameID;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
 		double defaultDensity = 0.05;
 
 		IFroggerGraphics graphic = new FroggerGraphicMulti(width, height);
 		Game game = new GameMulti(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
-		
+
 		IEnvironment env = null;
 		Frogs frogs = new Frogs();
-		for (int playerID = 0; playerID < numberOfPlayers; playerID +=1 ) {
+		for (int playerID = 0; playerID < numberOfPlayers; playerID += 1) {
 			switch (gameID) {
 			case 2:
-				frogs.add(new FrogInf(game, new Case(width - (playerID+1)*width/(numberOfPlayers+1),1),
-						Direction.up,controls.get(playerID)));
+				frogs.add(new FrogInf(game, new Case(width - (playerID + 1) * width / (numberOfPlayers + 1), 1),
+						Direction.up, controls.get(playerID)));
 				break;
 			case 1:
-				frogs.add(new Frog(game, new Case(width - (playerID+1)*width/(numberOfPlayers+1),0),
-						Direction.up,controls.get(playerID)));
+				frogs.add(new Frog(game, new Case(width - (playerID + 1) * width / (numberOfPlayers + 1), 0),
+						Direction.up, controls.get(playerID)));
 				break;
 			}
 			graphic.setFrog(frogs.get(playerID));
@@ -88,15 +86,14 @@ public class Main {
 
 		}
 		switch (gameID) {
-			case 1:
-				env = new Environment(game);
-				break;
-			case 2:
-				env = new EnvInf(game);
-				break;
+		case 1:
+			env = new Environment(game);
+			break;
+		case 2:
+			env = new EnvInf(game);
+			break;
 		}
 
-		
 		game.setEnvironment(env);
 
 		// Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
@@ -105,7 +102,7 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				game.update();
 				graphic.repaint();
-				game.time+=tempo;
+				game.time += tempo;
 			}
 		});
 		timer.setInitialDelay(0);

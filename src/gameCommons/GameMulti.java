@@ -5,12 +5,13 @@ import java.awt.Color;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
-public class GameMulti extends Game{
+public class GameMulti extends Game {
 	private Frogs frogs;
-	
+
 	public Case getLastFrogPos() {
 		return frogs.lastPos();
 	}
+
 	/**
 	 * 
 	 * @param graphic             l'interface graphique
@@ -22,7 +23,7 @@ public class GameMulti extends Game{
 	 *                            routes
 	 */
 	public GameMulti(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
-		super(graphic,width,height,minSpeedInTimerLoop,defaultDensity);
+		super(graphic, width, height, minSpeedInTimerLoop, defaultDensity);
 		frogs = new Frogs();
 
 	}
@@ -36,23 +37,19 @@ public class GameMulti extends Game{
 		this.frogs.add(frog);
 	}
 
-
-
-
 	public void moveBecauseOfWater() {
 		for (IFrog frog : frogs) {
 			int hasToMove = super.environment.hasToMove(frog.getPosition());
-			if (hasToMove ==0) {
+			if (hasToMove == 0) {
 				continue;
 			}
-			frog.move(hasToMove > 0 ?
-					Direction.right :
-					Direction.left);
+			frog.move(hasToMove > 0 ? Direction.right : Direction.left);
 		}
 	}
+
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
-	 * le cas
+	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
+	 * est le cas
 	 * 
 	 * @return true si le partie est perdue
 	 */
@@ -63,17 +60,17 @@ public class GameMulti extends Game{
 				break;
 			}
 		}
-		if(frogs.size()==0) {
+		if (frogs.size() == 0) {
 			System.out.println("YOU LOSE!");
-			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition(),time);
+			graphic.endGameScreen("You lose, your score  " + environment.getScreenPosition(), time);
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel est
-	 * le cas
+	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
+	 * est le cas
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
@@ -81,7 +78,7 @@ public class GameMulti extends Game{
 		for (IFrog frog : frogs) {
 			if (environment.isWinningPosition(frog.getPosition())) {
 				System.out.println("GAME!");
-				graphic.endGameScreen("GAME!",time);
+				graphic.endGameScreen("GAME!", time);
 				return true;
 			}
 		}
@@ -95,16 +92,16 @@ public class GameMulti extends Game{
 			this.graphic.add(new Element(frog.getOnScreenPosition(), Color.GREEN));
 		}
 	}
-	
+
 	public int getScreenPosition() {
 		return environment.getScreenPosition();
 	}
+
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */
 	public void update() {
 		if (!gameFinished) {
-			
 
 			moveBecauseOfWater();
 			environment.update();
@@ -114,7 +111,7 @@ public class GameMulti extends Game{
 
 			gameFinished = testLose();
 			gameFinished = testWin() || gameFinished;
-			
-			}
+
 		}
+	}
 }

@@ -7,10 +7,10 @@ import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 
 public class Game {
-	//variables qui évoluent pendant la partie.
+	// variables qui évoluent pendant la partie.
 	public int time;
 	public final Random randomGen = new Random();
-	protected boolean gameFinished; 
+	protected boolean gameFinished;
 
 	// Caracteristique de la partie
 	public final int width;
@@ -23,7 +23,6 @@ public class Game {
 	private IFrog frog;
 	protected IFroggerGraphics graphic;
 
-	
 	public Case getLastFrogPos() {
 		return frog.getPosition();
 	}
@@ -45,7 +44,7 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
-		this.gameFinished = false; 
+		this.gameFinished = false;
 
 	}
 
@@ -77,38 +76,37 @@ public class Game {
 
 	public void moveBecauseOfWater() {
 		int hasToMove = environment.hasToMove(frog.getPosition());
-		if (hasToMove ==0) {
+		if (hasToMove == 0) {
 			return;
 		}
-		frog.move(hasToMove > 0 ?
-				Direction.right :
-				Direction.left);
+		frog.move(hasToMove > 0 ? Direction.right : Direction.left);
 	}
+
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel est
-	 * le cas
+	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
+	 * est le cas
 	 * 
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
 			System.out.println("YOU LOSE!");
-			graphic.endGameScreen("You lose, your score  "+environment.getScreenPosition(),time);
+			graphic.endGameScreen("You lose, your score  " + environment.getScreenPosition(), time);
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel est
-	 * le cas
+	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
+	 * est le cas
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
 			System.out.println("GAME!");
-			graphic.endGameScreen("GAME!",time);
+			graphic.endGameScreen("GAME!", time);
 			return true;
 		}
 		return false;
@@ -123,6 +121,7 @@ public class Game {
 	public int getScreenPosition() {
 		return environment.getScreenPosition();
 	}
+
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de partie.
 	 */
@@ -136,8 +135,8 @@ public class Game {
 
 			gameFinished = testLose();
 			gameFinished = testWin() || gameFinished;
-			}
 		}
+	}
 
 	public void addFrog(IFrog frog2) {
 		setFrog(frog2);

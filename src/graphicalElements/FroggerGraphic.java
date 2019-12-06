@@ -1,26 +1,22 @@
 package graphicalElements;
 
 import javax.swing.*;
-
-import gameCommons.Direction;
 import gameCommons.IFrog;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListener {
 
 	private ArrayList<Element> elementsToDisplay;
 	private int pixelByCase = 16;
-	private int width;
 	private int height;
 	private IFrog frog;
 	private JFrame frame;
 
 	public FroggerGraphic(int width, int height) {
-		this.width = width;
 		this.height = height;
 		elementsToDisplay = new ArrayList<Element>();
 
@@ -51,10 +47,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	}
 
 	public void keyPressed(KeyEvent e) {
-		
+
 		frog.moveFromInput(e.getKeyCode());
 		return;
-		
+
 	}
 
 	public void clear() {
@@ -72,7 +68,8 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 
 	public void endGameScreen(String s, int time_ms) {
 		frame.remove(this);
-		JLabel label = new JLabel(s + "//time : " +time_ms/60000 +"m"+ time_ms%60000/1000+"s"+time_ms%1000);
+		JLabel label = new JLabel(
+				s + "//time : " + time_ms / 60000 + "m" + time_ms % 60000 / 1000 + "s" + time_ms % 1000);
 		label.setFont(new Font("Verdana", 1, 10));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setSize(this.getSize());

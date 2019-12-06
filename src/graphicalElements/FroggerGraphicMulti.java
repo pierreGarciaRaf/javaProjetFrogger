@@ -1,27 +1,22 @@
 package graphicalElements;
 
 import javax.swing.*;
-
-import gameCommons.Direction;
 import gameCommons.IFrog;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, KeyListener {
-
 
 	private ArrayList<Element> elementsToDisplay;
 	private int pixelByCase = 16;
-	private int width;
 	private int height;
 	private ArrayList<IFrog> frogs;
 	private JFrame frame;
 
 	public FroggerGraphicMulti(int width, int height) {
-		this.width = width;
 		this.height = height;
 		elementsToDisplay = new ArrayList<Element>();
 
@@ -70,10 +65,10 @@ public class FroggerGraphicMulti extends JPanel implements IFroggerGraphics, Key
 	public void setFrog(IFrog frog) {
 		this.frogs.add(frog);
 	}
-	
+
 	public void endGameScreen(String s, int time_ms) {
 		frame.remove(this);
-		JLabel label = new JLabel(s + "//time : " +time_ms/60000 +"m"+ time_ms%60000/1000+"s");
+		JLabel label = new JLabel(s + "//time : " + time_ms / 60000 + "m" + time_ms % 60000 / 1000 + "s");
 		label.setFont(new Font("Verdana", 1, 10));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setSize(this.getSize());

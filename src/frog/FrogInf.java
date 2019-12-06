@@ -1,6 +1,5 @@
 package frog;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import gameCommons.Case;
@@ -8,8 +7,8 @@ import gameCommons.Direction;
 import gameCommons.Game;
 
 public class FrogInf extends Frog {
-	public FrogInf(Game game, Case position, Direction direction,ArrayList<Integer> controls) {
-		super(game,position, direction, controls);
+	public FrogInf(Game game, Case position, Direction direction, ArrayList<Integer> controls) {
+		super(game, position, direction, controls);
 	}
 
 	public FrogInf(Game game, Case position, Direction direction) {
@@ -17,7 +16,7 @@ public class FrogInf extends Frog {
 	}
 
 	public FrogInf(Game game) {
-		super(game, new Case(game.width/2, 1), Direction.up);
+		super(game, new Case(game.width / 2, 1), Direction.up);
 	}
 
 	public Case getOnScreenPosition() {
@@ -37,21 +36,20 @@ public class FrogInf extends Frog {
 		return new Case(abs, ord);
 	}
 
-	
 	public void moveFromInput(int key) {
 		Direction whereToGo = controls.get(key);
 		if (whereToGo != null) {
 			move(super.controls.get(key));
 		}
 	}
-	
+
 	public void move(Direction key) {
 		switch (key) {
 		case up:
-			m_position = limitedCase(m_position.absc, m_position.ord+1);
+			m_position = limitedCase(m_position.absc, m_position.ord + 1);
 			break;
 		case down:
-			m_position = limitedCase(m_position.absc, m_position.ord-1);
+			m_position = limitedCase(m_position.absc, m_position.ord - 1);
 			break;
 		case left:
 			m_position = limitedCase(m_position.absc - 1, m_position.ord);

@@ -13,47 +13,48 @@ public class Environment implements IEnvironment {
 	private final int MINSPEED = 25;
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
-	
 
 	/*
-	 * Class constructor
-	 * initialize evry lane
+	 * Class constructor initialize evry lane
+	 * 
 	 * @param game a reference to the game
 	 */
 	public Environment(Game game) {
 		this.game = game;
-		
+
 		lanes.add(new Lane(game, 0, 1, true, 0));
 
 		Random rand = new Random();
 		int ord = 1;
-		for (; ord < game.height/4 - 1; ord++) {
-			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		for (; ord < game.height / 4 - 1; ord++) {
+			lanes.add(new Road(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+					game.defaultDensity));
 		}
 		lanes.add(new Lane(game, ord, 1, true, 0));
-		ord+=1;
-		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
-		ord+=1;
-		for (; ord < 3*game.height/4 - 2; ord++) {
-			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+		ord += 1;
+		lanes.add(new River(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+				game.defaultDensity));
+		ord += 1;
+		for (; ord < 3 * game.height / 4 - 2; ord++) {
+			lanes.add(new Road(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+					game.defaultDensity));
 		}
 		lanes.add(new Lane(game, ord, 1, true, 0));
-		ord+=1;
-		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
-		ord+=1;
-		lanes.add(new River(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
-		ord+=1;
+		ord += 1;
+		lanes.add(new River(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+				game.defaultDensity));
+		ord += 1;
+		lanes.add(new River(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+				game.defaultDensity));
+		ord += 1;
 		for (; ord < game.height; ord++) {
-			lanes.add(new Road(game, ord, MINSPEED+rand.nextInt(MAXSPEED-MINSPEED) + 1, rand.nextBoolean(), game.defaultDensity));
+			lanes.add(new Road(game, ord, MINSPEED + rand.nextInt(MAXSPEED - MINSPEED) + 1, rand.nextBoolean(),
+					game.defaultDensity));
 		}
 
 		lanes.add(new Road(game, game.height - 1, 1, true, 0));
 	}
-	
-	
 
-
-	
 	/**
 	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
 	 * sans mourir
@@ -78,13 +79,15 @@ public class Environment implements IEnvironment {
 
 	/*
 	 * Check if an entity at the specified case have to move for some reason
+	 * 
 	 * @param c the position
+	 * 
 	 * @return an int : -1, 0 or 1 depending of the direction
 	 */
 	public int hasToMove(Case c) {
 		return lanes.get(c.ord).hasToMove(c);
 	}
-	
+
 	/**
 	 * Effectue une �tape d'actualisation de l'environnement
 	 */
@@ -95,15 +98,14 @@ public class Environment implements IEnvironment {
 	}
 
 	/*
-	 * Show evry car or log
-	 * call the show method of evry element in the lane
+	 * Show evry car or log call the show method of evry element in the lane
 	 */
 	public void showCar() {
 		for (Lane lane : lanes) {
 			lane.show();
-		}	
+		}
 	}
-	
+
 	public int getScreenPosition() {
 		return 0;
 	}
