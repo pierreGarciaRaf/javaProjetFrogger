@@ -84,7 +84,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		this.frog = frog;
 	}
 	/**
-	 * display and endGameScreen. 
+	 * display an endGameScreen. 
 	 * @param s : text to display (has to contain score)
 	 * @param time_ms : the time to display from ms to min:s.
 	 */
