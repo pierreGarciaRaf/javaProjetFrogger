@@ -14,7 +14,7 @@ public class Environment implements IEnvironment {
 	private Game game;
 	private ArrayList<Lane> lanes = new ArrayList<>(0);
 
-	/*
+	/**
 	 * Class constructor initialize evry lane
 	 * 
 	 * @param game a reference to the game
@@ -56,11 +56,10 @@ public class Environment implements IEnvironment {
 	}
 
 	/**
-	 * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
-	 * sans mourir
+	 * test if the case is safe, an entiy wont die here
 	 * 
-	 * @param c la case � tester
-	 * @return vrai s'il n'y a pas danger
+	 * @param c the case
+	 * @return true if safe
 	 */
 	public boolean isSafe(Case c) {
 		return lanes.get(c.ord).isSafe(c);
@@ -68,16 +67,16 @@ public class Environment implements IEnvironment {
 	}
 
 	/**
-	 * Teste si la case est une case d'arrivee
+	 * test if the case is a wining case
 	 * 
-	 * @param c
-	 * @return vrai si la case est une case de victoire
+	 * @param c the case
+	 * @return true if the case is a wining case
 	 */
 	public boolean isWinningPosition(Case c) {
 		return c.ord == game.height - 1;
 	}
 
-	/*
+	/**
 	 * Check if an entity at the specified case have to move for some reason
 	 * 
 	 * @param c the position
@@ -89,7 +88,7 @@ public class Environment implements IEnvironment {
 	}
 
 	/**
-	 * Effectue une �tape d'actualisation de l'environnement
+	 * actualize evry lane, called evry frame
 	 */
 	public void update() {
 		for (Lane lane : lanes) {
@@ -97,7 +96,7 @@ public class Environment implements IEnvironment {
 		}
 	}
 
-	/*
+	/**
 	 * Show evry car or log call the show method of evry element in the lane
 	 */
 	public void showCar() {

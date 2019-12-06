@@ -4,6 +4,15 @@ import gameCommons.Game;
 
 public class Road extends Lane {
 
+	/**
+	 * class constructor
+	 * 
+	 * @param game        a reference to the game
+	 * @param ord         the ordinate of the road
+	 * @param speed       the speed of car on the lane
+	 * @param leftToRight the direction of car
+	 * @param density     of car on the road
+	 */
 	public Road(Game game, int ord, int speed, boolean leftToRight, double density) {
 		super(game, ord, speed, leftToRight, density);
 		for (int time = 0; time < 300; time += 1) {
@@ -11,6 +20,10 @@ public class Road extends Lane {
 		}
 	}
 
+	/**
+	 * actualize the psition of car. need to be called evry frame. spawn a car
+	 * rendomly dependig ofthe density
+	 */
 	public void update() {
 		super.update();
 
@@ -19,6 +32,9 @@ public class Road extends Lane {
 
 	}
 
+	/**
+	 * add a car rendomly depending of the density of car
+	 */
 	private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
 			if (game.randomGen.nextDouble() < density) {

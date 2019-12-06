@@ -34,8 +34,8 @@ public class GeneratorState {
 	 * 
 	 */
 	public void update(int speed) {
-		if (rn.nextFloat() < regularity) {
-			now += speed;
+		if (this.rn.nextFloat() < this.regularity) {
+			this.now += speed;
 		}
 	}
 
